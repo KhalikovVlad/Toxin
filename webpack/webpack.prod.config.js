@@ -7,12 +7,13 @@ const webpackConfig = {
     mode: mode,
     context: path.resolve(__dirname, '../src'),
     entry: {
-        landingPage: path.resolve(__dirname, '../src/landingPage.js')
+        landingPage: path.resolve(__dirname, '../src/landingPage.js'),
+        nouislider: path.resolve(__dirname, '../src/components/range-slider/nouislider.js'),
     },
     output: {
+                clean: true,
                 path: path.resolve(__dirname, '../dist'),
                 filename: `[name]/[name].[hash].js`,
-                clean: true
             },
     module: {
         rules: [
