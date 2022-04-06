@@ -1,0 +1,44 @@
+.heart-btn {
+    width: 40px;
+    height: 20px;
+    display: flex;
+    background: none;
+    border: 1px solid $dark-shade-25per;
+    border-radius: 10px;
+    align-items: center;
+    cursor: pointer;
+    & span {
+        font: normal 10px "Montserrat", sans-serif;
+        color:  $dark-shade-25per;
+        padding-left: 8px;
+    }
+    &__favorite {
+        display: none;
+    } 
+    img {
+        margin-left: -2px;
+    }
+}
+
+
+.heart-btn.added {
+    min-width: 40px;
+    height: 20px;
+    display: flex;
+    background: none;
+    border: 1px solid $purple;
+    border-radius: 10px;
+    align-items: center;
+    cursor: pointer;
+    & span {
+        font: normal 10px "Montserrat", sans-serif;
+        color:  $purple;
+        padding-left: 8px;
+    } 
+    .heart-btn__favorite {
+        display: block;
+    }
+    .heart-btn__favorite-border {
+        display: none;
+    }
+}
