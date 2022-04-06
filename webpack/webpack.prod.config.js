@@ -82,31 +82,36 @@ const webpackConfig = {
             template: "../src/pages/landing-page/landing-page.pug",
             title: 'landing-page',
             filename: 'landingPage/landingPage.html',
-            favicon: '../src/img/favicon/favicon.ico'
+            favicon: '../src/favicon/favicon.ico',
+            chunks: ['landingPage']
         }),
         new HtmlWebpackPlugin({
             template: "../src/pages/registration-page/registration-page.pug",
             title: 'registration-page',
             filename: 'registrationPage/registrationPage.html',
-            favicon: '../src/img/favicon/favicon.ico'
+            favicon: '../src/favicon/favicon.ico',
+            chunks: ['registrationPage']
         }),
         new HtmlWebpackPlugin({
             template: "../src/pages/room-details-page/room-details-page.pug",
             title: 'room-details-page',
             filename: 'roomDetailsPage/roomDetailsPage.html',
-            favicon: '../src/img/favicon/favicon.ico'
+            favicon: '../src/favicon/favicon.ico',
+            chunks: ['roomDetailsPage']
         }),
         new HtmlWebpackPlugin({
             template: "../src/pages/search-room-page/search-room-page.pug",
             title: 'search-room-page',
             filename: 'searchRoomPage/searchRoomPage.html',
-            favicon: '../src/img/favicon/favicon.ico'
+            favicon: '../src/favicon/favicon.ico',
+            chunks: ['searchRoomPage']
         }),
         new HtmlWebpackPlugin({
             template: "../src/pages/sing-in-page/sing-in-page.pug",
             title: 'sing-in-page',
             filename: 'singInPage/singInPage.html',
-            favicon: '../src/img/favicon/favicon.ico'
+            favicon: '../src/favicon/favicon.ico',
+            chunks: ['singInPage']
         }),
     ],
 };
