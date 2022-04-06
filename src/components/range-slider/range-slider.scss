@@ -1,0 +1,78 @@
+.filters {
+    width: 266px;
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 9px;
+    }
+    p {
+        font: $regular-font;
+        line-height: 14px;
+        color: $dark-shade-50per;
+    }
+}
+
+.filters-price {
+    &__title {
+        font: $h3-font;
+        color: $dark-shade-100per;
+        text-transform: uppercase;
+    }
+    &__input {
+        width: 40px;
+        &:focus {
+            outline: 1px solid $dark-shade-5per;
+            border-radius: 5px;
+        }
+    }
+
+    &__input,
+    span {
+        border: none;
+        font: $regular-font;
+        color: $dark-shade-50per;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.noUi-target {
+    height: 6px;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    outline: 1px solid $dark-shade-25per;
+    border-radius: 3px;
+}
+
+.noUi-connect {
+    background: $green-gradient;
+}
+
+.noUi-handle::after,
+.noUi-handle::before {
+    display: none;
+}
+
+.noUi-handle {
+    box-shadow: none;
+    border-radius: 10px;
+    background: $green-gradient;
+    outline: 2px solid white;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 14px;
+    height: 14px;
+    top: -4px;
+    right: -8px;
+}
