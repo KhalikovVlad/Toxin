@@ -1,0 +1,46 @@
+.paginator {
+    width: 241px;
+    a,
+    span {
+        display: inline-block;
+        height: 40px;
+        min-width: 40px;
+        text-align: center;
+        vertical-align: middle;
+        font: $regular-font;
+        line-height: 40px;
+        color: $dark-shade-50per;
+    }
+    .next {
+        background: $green-gradient;
+        border-radius: 22px;
+        &:hover {
+            background: $green;
+        }
+        &:active {
+            opacity: 50%;
+        }
+        img {
+            width: 16px;
+            height: 16px;
+            margin-top: 12px;
+        }
+    }
+    .current {
+        background: $purple-gradient;
+        border-radius: 22px;
+        color: white;
+        &:hover {
+            background: $purple;
+        }
+        &:active {
+            opacity: 50%;
+        }
+    }
+    p {
+        line-height: 24px;
+        font: $body-font;
+        color: $dark-shade-75per;
+        margin: 10px 0px 0px 5px;
+    }
+}
