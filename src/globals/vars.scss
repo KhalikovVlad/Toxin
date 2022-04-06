@@ -1,0 +1,30 @@
+// colors
+
+$dark-shade-100per: rgba(31, 32, 65, 100%);
+$dark-shade-75per: rgba(31, 32, 65, 75%);
+$dark-shade-50per: rgba(31, 32, 65, 50%);
+$dark-shade-25per: rgba(31, 32, 65, 25%);
+$dark-shade-5per: rgba(31, 32, 65, 5%);
+
+$purple: #BC9CFF;
+$purple-gradient: linear-gradient(#BC9CFF, #8BA4F9);
+
+$green: #6FCF97;
+$green-gradient: linear-gradient(#6FCF97, #66D2EA);
+
+// fonts
+
+$body-font: normal 14px "Montserrat", sans-serif;
+$regular-font: normal 12px "montserrat", sans-serif;
+$h1-font: normal bold 24px "Montserrat", sans-serif;
+$h2-font: normal bold 19px "Montserrat", sans-serif;
+$h3-font: normal bold 12px "Montserrat", sans-serif;
+
+// breakpoints
+
+$max-width: 1440px;
+$max-width-container: 1160px;
+$md1: $max-width-container + 12;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
