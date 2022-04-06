@@ -1,0 +1,26 @@
+.dropdown
+    button.dropdown__button
+        .button-text Сколько гостей
+        img(src=require('./img/expand_more.svg'))
+    ul.dropdown__list(id='count')
+        li.dropdown__list-item
+            .list-item__text Взрослые
+            .list-item__buttons
+                button.btn-minus.disabled -
+                span.count(id='span-1') 0
+                button.btn-plus +
+        li.dropdown__list-item
+            .list-item__text Дети
+            .list-item__buttons 
+                button.btn-minus.disabled -
+                span.count(id='span-2') 0
+                button.btn-plus +
+        li.dropdown__list-item
+            .list-item__text Младенцы
+            .list-item__buttons 
+                button.btn-minus.disabled -
+                span.count(id='span-3') 0
+                button.btn-plus +
+        li.dropdown__list-item 
+            button.list-item__clear.hidden очистить
+            button.list-item__apply применить
