@@ -1,0 +1,18 @@
+.registr-btn {
+    width: 196px;
+    height: 34px;
+    padding: 0px;
+    border-radius: 22px;
+    background: $purple-gradient;
+    border: none;
+    color: white;
+    font: $h3-font;
+    text-transform: uppercase;
+    &:hover {
+        opacity: 0.7;
+    }
+    &:active {
+        opacity: 0.5;
+    }
+    cursor: pointer;
+}
