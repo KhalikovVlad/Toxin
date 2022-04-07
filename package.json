@@ -41,6 +41,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "imask": "^6.4.2",
     "nouislider": "^15.5.1"
   }
 }
