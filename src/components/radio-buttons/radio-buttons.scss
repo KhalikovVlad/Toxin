@@ -1,0 +1,49 @@
+.radio-buttons {
+    position: relative;
+    display: flex;
+    height: 24px;
+    width: 260px;
+    align-items: center;
+    label {
+        line-height: 24px;
+        font: $body-font;
+        color: $dark-shade-75per;
+        margin-left: 10px;
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+}
+
+input[type='checkbox'] {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    background: white;
+    border: 1px solid $dark-shade-25per;
+    margin: 0;
+}
+
+input:checked[type='checkbox'] {
+    border-color: $purple;
+}
+
+input[type='checkbox']::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    top: 3px;
+    left: 3px;
+    background: none;
+}
+
+input:checked[type='checkbox']::before {
+    background: $purple-gradient;
+}
