@@ -19,18 +19,19 @@
         appearance: none;
         &:checked + .checkbox__span {
             background: url('../pages/test/img/Vector.svg') no-repeat;
-            background-position: 4px 4px;
+            background-position: 5px 5px;
             background-size: 10px 10px;
-            border-color: $purple;
+            outline-color: $purple;
         }
     }
     &__span{
         position: absolute;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 4px;
         background-color: white;
-        border: 1px solid $dark-shade-25per;
+        outline: 1px solid $dark-shade-25per;
+        outline-offset: -1px;
         margin-left: -20px;
     }
     p {

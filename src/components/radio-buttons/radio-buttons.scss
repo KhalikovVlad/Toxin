@@ -1,16 +1,19 @@
 .radio-buttons {
-    position: relative;
     display: flex;
+    position: relative;
     height: 24px;
     width: 260px;
-    align-items: center;
     label {
-        line-height: 24px;
-        font: $body-font;
-        color: $dark-shade-75per;
-        margin-left: 10px;
+        display: flex;
+        align-items: center;
         &:not(:last-child) {
             margin-right: 20px;
+        }
+        p {
+            margin-left: 10px;
+            line-height: 24px;
+            font: $body-font;
+            color: $dark-shade-75per;
         }
     }
 }
