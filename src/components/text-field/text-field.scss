@@ -1,0 +1,16 @@
+input[type=text] {
+    width: 320px;
+    font: $body-font;
+    color: $dark-shade-25per;
+    border: 1px solid $dark-shade-25per;
+    height: 40px;
+    padding-left: 15px;
+    border-radius: 4px;
+    outline: none;
+    &:hover,
+    &:focus,
+    &:active {
+        border: 1px solid $dark-shade-50per;
+        color: $dark-shade-75per;
+    }
+}
