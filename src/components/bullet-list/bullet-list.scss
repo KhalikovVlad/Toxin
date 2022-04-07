@@ -1,0 +1,30 @@
+ul {
+    padding: 0px;
+    display: grid;
+    list-style: none;
+    row-gap: 10px;
+    li {
+        position: relative;
+        padding-left: 20px;
+        font: $body-font;
+        color: $dark-shade-75per;
+        white-space: pre-wrap;
+        width: 243px;
+        &:last-child {
+            line-height: 24px;
+            &:before {
+                top: 7px;
+            }
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0; 
+            top: 4px;
+            width: 10px; 
+            height: 10px;
+            border-radius: 50%;
+            background-color: $dark-shade-25per;
+        }
+    }
+}
