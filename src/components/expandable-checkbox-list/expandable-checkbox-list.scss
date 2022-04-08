@@ -1,0 +1,76 @@
+.expandable-checkbox-list {
+    width: 266px;
+    .title {
+        display: flex;
+        align-items: center;
+        h3 {
+            font: $h3-font;
+            text-transform: uppercase;
+            color: $dark-shade-100per;
+            margin: 0px;
+        }
+        .btn {
+            margin: 0px 0px 0px 29px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            img {
+                width: 12px;
+                height: 8px;
+            }
+        }
+    }
+}
+
+.checkbox-list {
+    padding-top: 18px;
+    display: none;
+    &__label {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        &:not(:last-child) {
+            margin: 0px 0px 10px 0px;
+        }
+        &:last-child {
+            display: flex;
+            align-items: flex-start;
+        }
+    }
+    &__input {
+        margin: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        &:checked + .checkbox-list__span {
+            background: url('../pages/test/img/Vector.svg') no-repeat;
+            background-position: 5px 5px;
+            background-size: 10px 10px;
+            outline-color: $purple;
+        }
+    }
+    &__span{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        background-color: white;
+        outline: 1px solid $dark-shade-25per;
+        outline-offset: -1px;
+        margin-left: -20px;
+    }
+    p {
+        margin: 0px 0px 0px 10px;
+        font: $body-font;
+        color: $dark-shade-50per;
+        line-height: 20px;
+    }
+}
+
+.checkbox-list--visible {
+    display: block;
+}
+
+.btn--rotate {
+    transform: rotate(180deg);
+}
