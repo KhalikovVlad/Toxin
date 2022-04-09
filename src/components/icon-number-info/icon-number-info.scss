@@ -1,0 +1,32 @@
+.number-info {
+    width: 280px;
+    display: flex;
+    &:not(:last-child) {
+        border-bottom: 1px solid rgba(31, 32, 65, 10%);
+    } 
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+    &__icon {
+        img {
+            padding: 4px 14px 0px 5px;
+        }
+    }
+    &__text {
+        margin: 0px 0px 24px 0px;
+        p {    
+            margin: 0px;    
+            &:first-child {
+                font: $body-font;
+                font-weight: bold;
+                color: $dark-shade-75per;
+                line-height: 24px;
+            }
+            &:nth-child(n+2) {
+                font: $body-font;
+                color: $dark-shade-75per;
+                line-height: 24px;
+            }
+        }
+    }
+}
