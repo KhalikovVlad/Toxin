@@ -1,14 +1,88 @@
 @font-face {
 	font-family: "Montserrat";
-	font-display: swap;
-	src: url("../fonts/montserrat-bold/montserrat-bold.woff2") format("woff2"), url("../fonts/montserrat-bold/montserrat-bold.woff") format("woff");
 	font-weight: 700;
 	font-style: normal;
+	src: url("../fonts/montserrat-bold/montserrat-bold.woff2") format("woff2"), 
+		url("../fonts/montserrat-bold/montserrat-bold.woff") format("woff");
+	src: local("Montserrat Bold"), local("Montserrat-Bold"),
+		url("../fonts/montserrat-bold/montserrat-bold.eot") format("embedded-opentype"),
+		url("../fonts/montserrat-bold/montserrat-bold.ttf") format("truetype"),
+		url("../fonts/montserrat-bold/montserrat-bold.svg") format("svg");
+
 }
 @font-face {
 	font-family: "Montserrat";
-	font-display: swap;
-	src: url("../fonts/montserrat-regular/montserrat-regular.woff2") format("woff2"), url("../fonts/montserrat-regular/montserrat-regular.woff") format("woff");
 	font-weight: 400;
 	font-style: normal;
+	src: url("../fonts/montserrat-regular/montserrat-regular.woff2") format("woff2"), 
+		url("../fonts/montserrat-regular/montserrat-regular.woff") format("woff");
+	src: local("Montserrat Regular"), local("Montserrat-Regular"),
+		url("../fonts/montserrat-regular/montserrat-regular.eot") format("embedded-opentype"),
+		url("../fonts/montserrat-regular/montserrat-regular.ttf") format("truetype"),
+		url("../fonts/montserrat-regular/montserrat-regular.svg#Montserrat") format("svg");
+}
+@font-face {
+	font-family: "icons";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/iconsfont/icons.woff2") format("woff2"),
+		url("../fonts/iconsfont/icons.woff") format("woff");
+	src: local("icons"),
+		url("../fonts/iconsfont/icons.ttf") format("truetype"),
+		url("../fonts/iconsfont/icons.svg") format("svg");
+}
+%ic {
+    font-family: "icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="_icon-"], 
+[class*=" _icon-"] {
+    &:before {
+        @extend %ic;
+        display: block;  
+    }
+}
+  
+._icon-arrow_back:before {
+    content: "\e900";
+}
+._icon-arrow_forward:before {
+    content: "\e901";
+}
+._icon-expand_more:before {
+    content: "\e902";
+}
+._icon-facebook:before {
+    content: "\e903";
+}
+._icon-favorite:before {
+    content: "\e904";
+}
+._icon-favorite_border:before {
+    content: "\e905";
+}
+._icon-insert_emoticon:before {
+    content: "\e906";
+}
+._icon-instagram:before {
+    content: "\e907";
+}
+._icon-location_city:before {
+    content: "\e908";
+}
+._icon-star:before {
+    content: "\e909";
+}
+._icon-star_border:before {
+    content: "\e90a";
+}
+._icon-twitter:before {
+    content: "\e90b";
 }
