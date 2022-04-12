@@ -12,6 +12,8 @@ $purple-gradient: linear-gradient(#BC9CFF, #8BA4F9);
 $green: #6FCF97;
 $green-gradient: linear-gradient(#6FCF97, #66D2EA);
 
+$white: white;
+
 // fonts
 
 $body-font: normal 14px "Montserrat", sans-serif;
@@ -19,6 +21,18 @@ $regular-font: normal 12px "montserrat", sans-serif;
 $h1-font: normal bold 24px "Montserrat", sans-serif;
 $h2-font: normal bold 19px "Montserrat", sans-serif;
 $h3-font: normal bold 12px "Montserrat", sans-serif;
+
+//  box-shadow
+
+$shadow1: 0px 10px 20px $dark-shade-5per;
+
+// border
+
+$border-radius-22px: 22px;
+
+// text-transform
+
+$uppercase: uppercase;
 
 // breakpoints
 
