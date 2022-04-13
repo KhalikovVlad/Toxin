@@ -1,2 +1,2 @@
-form(name="email" action="#") 
-    input(autocomplete="on" type="text" name="email" value="Email" onfocus="this.value=''")
+mixin input(cls= 'button', type= 'submit', value= '', autocomplete= 'off', name= 'email', onfocus= '', id= '')
+    input.input(class= `${cls}` type=`${type}` value=`${value}` autocomplete=`${autocomplete}` name= `${name}` onfocus= `${onfocus}` id= `${id}`)
