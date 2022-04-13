@@ -1,3 +1,5 @@
+import './globals/test.scss';
+
 // Dropdown list
 document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
     const dropdown = document.querySelector('.dropdown');
@@ -82,14 +84,15 @@ document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
         const span1 = document.getElementById('span-1');
         const span2 = document.getElementById('span-2');
         const span3 = document.getElementById('span-3');
-        const arraySpans = [Number(span1.textContent), Number(span2.textContent), Number(span3.textContent)];
+        const arraySpans = [Number(span1.textContent), Number(span2.textContent)];
         const totalSum = arraySpans.reduce((total, span) => {
             return total + span;
         }, 0);  
-        if (totalSum === 0) {
+        if (totalSum === 0 && Number(span3.textContent) === 0) {
             clearBtn.classList.add('hidden');
+            dropdownText.textContent = 'Сколько гостей';
         };
-
+        // plurals
         applyBtn.addEventListener('click', function () {
             const plurals = {
                 zero: 'гостей',
@@ -103,6 +106,20 @@ document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
             const pluralsOne = plurals[ruleOne];
             dropdownText.textContent = totalSum + ' ' + pluralsOne;
             dropdownList.classList.remove('dropdown__list--visible');
+
+            const plurals2 = {
+                zero: 'младенцев',
+                one : 'младенец',
+                two: 'младенца',
+                few: 'младенца',
+                many: 'младенцев',
+                other: 'младенцев',
+            };
+            if (Number(span3.textContent) > 0) {
+            const ruleTwo = new Intl.PluralRules('ru').select(Number(span3.textContent));
+            const pluralsTwo = plurals2[ruleTwo];
+            dropdownText.textContent = totalSum + ' ' + pluralsOne + ', ' + Number(span3.textContent) + ' ' + pluralsTwo;
+            };
         });
     });
 });
