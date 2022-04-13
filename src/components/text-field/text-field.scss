@@ -1,16 +1,53 @@
-input[type=text] {
-    width: 320px;
-    font: $body-font;
-    color: $dark-shade-25per;
-    border: 1px solid $dark-shade-25per;
-    height: 44px;
-    padding-left: 15px;
-    border-radius: 4px;
-    outline: none;
-    &:hover,
-    &:focus,
-    &:active {
-        border: 1px solid $dark-shade-50per;
-        color: $dark-shade-75per;
+.input {
+    &__text-field {
+        width: 320px;
+        font: $body-font;
+        color: $dark-shade-25per;
+        border: 1px solid $dark-shade-25per;
+        height: 44px;
+        padding-left: 15px;
+        border-radius: 4px;
+        outline: none;
+        &:hover,
+        &:focus,
+        &:active {
+            border: 1px solid $dark-shade-50per;
+            color: $dark-shade-75per;
+        }
+    }
+    &__masked-text-field {
+        width: 320px;
+        font: $body-font;
+        color: $dark-shade-25per;
+        border: 1px solid $dark-shade-25per;
+        height: 44px;
+        padding-left: 15px;
+        border-radius: 4px;
+        outline: none;
+        &:hover,
+        &:focus,
+        &:active {
+            border: 1px solid $dark-shade-50per;
+            color: $dark-shade-75per;
+        }
+    }
+    &__subscription-text-field {
+        width: 267px;
+        font: $body-font;
+        color: $dark-shade-25per;
+        border: 1px solid $dark-shade-25per;
+        height: 44px;
+        padding-left: 15px;
+        border-radius: 4px;
+        outline: none;
+        position: relative;
+        background: url('../pages/test/img/arrow_forward.svg') no-repeat;
+        background-position: 95%;
+        &:hover,
+        &:focus,
+        &:active {
+            border: 1px solid $dark-shade-50per;
+            color: $dark-shade-75per;
+        }
     }
 }
