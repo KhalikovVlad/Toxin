@@ -1,26 +1,24 @@
-ul {
-    padding: 0px;
+// bullet list
+
+.bullet-list {
     display: grid;
     list-style: none;
     row-gap: 10px;
-    li {
+
+    &__item {
         position: relative;
-        padding-left: 20px;
         font: $body-font;
         color: $dark-shade-75per;
-        white-space: pre-wrap;
-        width: 243px;
-        &:last-child {
-            line-height: 24px;
-            &:before {
-                top: 7px;
-            }
-        }
+        word-wrap: break-word;
+        padding-left: 20px;
+        width: 260px;
+        line-height: 24px;
+    
         &:before {
             content: '';
             position: absolute;
             left: 0; 
-            top: 4px;
+            top: 7px;
             width: 10px; 
             height: 10px;
             border-radius: 50%;
