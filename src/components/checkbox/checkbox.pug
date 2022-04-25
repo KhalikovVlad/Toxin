@@ -1,0 +1,24 @@
+mixin checkbox(checkbox)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        const {
+            label,
+            title,
+            description,
+        } = checkbox;
+
+    label.checkbox
+        input.checkbox__input(
+            type = 'checkbox'
+            title = title ? title : false  
+            aria-label = description ? `checkbox-label-${id}` : false 
+            aria-description = description ?  `checkbox-description-${id}` : false
+        )
+
+        if description 
+            b.checkbox__label(id = `checkbox-label-${id}`) !{label}
+            p.checkbox__description(id = `checkbox-description-${id}`) !{description}
+
+        else 
+            span.checkbox__label !{label}

@@ -1,0 +1,90 @@
+// checkbox 
+
+.checkbox {
+    display: grid;
+    grid-template-areas: 
+        'input label'
+        '. description';
+    grid-template-columns: 20px auto;
+    column-gap: 10px;
+    font: $body-font;   
+    cursor: pointer;
+
+    // checkbox input
+
+    &__input {
+        grid-area: 'input';
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px; 
+        height: 20px;
+        padding-bottom: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: $dark-shade-border-25per;
+        border-radius: 4px;
+        cursor: inherit;
+    
+        &:hover {
+            box-shadow: $shadow-hover;
+        }
+    
+        &:checked {
+            border-color: $purple;
+        }
+    
+        &:disabled {
+            border-color: $dark-shade-5per;
+            cursor: default;
+        }
+    
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 1px;
+        }
+    
+        &:before {
+            content: '';
+            width: 6px; 
+            height: 8px;
+            clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 66.666666666% 0%, 66.666666666% 75%, 0% 75%);
+            transform: rotate(45deg);
+            background: $purple-gradient;
+            opacity: 0;
+            transition: opacity .4s; 
+        }
+    
+        &:checked:before {
+            opacity: 1;
+            transition: opacity .4s;  
+        }
+    }
+
+    // checkbox label
+
+    &__label {
+        grid-area: label;
+        align-self: center;
+        width: 193px;
+        line-height: 18px;
+        color: $dark-shade-50per;
+        white-space: pre-line;
+    }
+
+    // checkbox description
+
+    &__description {
+        grid-area: 'description';
+        margin-top: 6px;
+        line-height: 14px;
+        font: $regular-font;
+        color: $dark-shade-50per;
+        white-space: pre-line;
+    }
+}
+
+b.checkbox__label {
+    color: $dark-shade-75per;
+}
