@@ -1,73 +1,110 @@
+// button
+
 .button {
     cursor: pointer;
-    &__registr {
-        width: 196px;
-        height: 34px;
-        border-radius: $border-radius-22px;
-        background: $purple-gradient;
-        color: $white;
-        font: $h3-font;
-        text-transform: $uppercase;
-        &:hover {
-            opacity: 0.7;
-        }
-        &:active {
-            opacity: 0.5;
-        }
+
+    &:focus {
+        outline: $custom-outline;
+        outline-offset: 2px;
     }
 
-    &__login-wrapper {
-        width: 87px;
-        height: 34px;
-        background: $purple-gradient;
-        border-radius: $border-radius-22px;
-        &:hover {
-            opacity: 0.5;
-        }
-        &:active {
-            opacity: 0.7;
-        }
+    &:disabled {
+        cursor: default;
     }
 
-    &__login {
-        width: 83px;
-        height: 30px;
-        border-radius: $border-radius-22px;
-        background-color: $white;
-        margin-left: 2px;
-        margin-top: 2px;
-        color: $purple;
-        font: $h3-font;
-        text-transform: $uppercase;
-        &:active {
-            color: $dark-shade-75per;
-        }
-    }
-
-    &__pay {
-        width: 320px;
-        height: 44px;
-        border-radius: $border-radius-22px;
-        background: $purple-gradient;
-        color: $white;
-        font: $h3-font;
-        text-transform: $uppercase;
+    &:not(.button_link) {
+        width: min(100%, 320px);
+        height: min(100%, 44px);
         display: flex;
-        align-items: center;
         justify-content: center;
-        line-height: 44px;
-        position: relative;
-        &:hover {
-            opacity: 0.7;
+        align-items: center;
+        border-radius: 22px;
+    }
+
+    &:not(.button_link).button_with_border {
+        padding: 0px 18px;
+        border: $purple-border;
+        color: $purple;
+    
+        &:active { 
+            opacity: 0.5;
+            transition: opacity .2s;
         }
+    
+        &:disabled {
+            border-color: $purple-50per;
+        }
+    
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }
+    }
+
+    &:not(.button_link).button_filled {
+        padding: 0px 20px;
+        background: $purple-gradient;
+        color: white;
+    
         &:active {
             opacity: 0.5;
+            transition: opacity .2s;
         }
-    }  
-}
+    
+        &:disabled {
+            opacity: 0.5;
+        }
+    
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }    
+    }
+    &-link {
+        transition: opacity .2s;
+    
+        &:active {
+            opacity: 0.5;
+            transition: opacity .2s;
+        }
+    
+        &:disabled {
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    
+        &:hover:not(:disabled) {
+            text-decoration: underline;
+        }
+    
+        &.button_color_purple {
+            color: $purple;
+        }
+    
+        &.button_color_dark_shade {
+            color: $dark-shade-50per;
+        }
+    }
 
-._icon-arrow_forward::before {
-    position: absolute;
-    right: 3%;
-    font-size: 22px;
+    &_with_icon {
+        position: relative;
+    }
+
+    // button label
+
+    &__label {
+        font: $h3-font;
+        text-transform: uppercase;
+        pointer-events: none;
+        white-space: nowrap;
+    }
+
+    // button icon
+
+    &__icon {
+        position: absolute;
+        right: 0;
+        width: 44px;
+        font: $icon-font;
+        font-size: 24px;
+        pointer-events: none;
+    }
 }

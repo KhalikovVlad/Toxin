@@ -1,2 +1,36 @@
-mixin button(title= 'button', mainClass= 'button', type= 'submit')
-    button.button(title= `${title}` class= `${mainClass}` type=`${type}`)= title
+mixin button(button)
+    -
+        const {
+            label,
+            type,
+            controlClass,
+            disabled,
+            link,
+            fill,
+            border,
+            color,
+            icon
+        } = button 
+
+        let classes = 'button';
+
+        classes = controlClass ? `${classes} ${controlClass}` : classes;
+        classes = link ? `${classes} button_link` : classes;
+        classes = fill ? `${classes} button_filled` : classes;
+        classes = border ? `${classes} button_with_border` : classes;
+        classes = color ? `${classes} button_color_${color}` : classes;
+        classes = icon ? `${classes} button_with_icon` : classes;
+
+    button(
+        class = classes
+        type = type
+        title = title
+        disabled = disabled ? true : false 
+    )
+        span.button__label #{label}
+
+        if icon 
+            span.button__icon(
+                aria-hidden = 'true'
+                class = `${icon}`
+            )
