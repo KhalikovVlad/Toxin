@@ -1,21 +1,19 @@
-var expandableCheckBoxList = document.querySelector('.expandable-checkbox-list');
-var expandableCheckBoxBtn = document.querySelector('.btn');
-var CheckBoxList = document.querySelector('.checkbox-list');
+const expandableCheckboxList = document.querySelector('.js-expandable-checkbox-list');
+const expandableCheckboxListButton = expandableCheckboxList.querySelector('.js-expandable-checkbox-list__button');
 
-expandableCheckBoxBtn.addEventListener('click', function () {
-    CheckBoxList.classList.toggle('checkbox-list--visible');
-    expandableCheckBoxBtn.classList.toggle('btn--rotate');
-});
-
-document.addEventListener('click', (e) => {
-    const click =  e.composedPath().includes(expandableCheckBoxList);
-    if (!click) {
-        CheckBoxList.classList.remove('checkbox-list--visible');
-    }
+expandableCheckboxListButton.addEventListener('click', function () {
+    expandableCheckboxList.classList.toggle('expandable-checkbox-list_expanded');
 })
 
+document.addEventListener('click', (e) => {
+    const click = e.composedPath().includes(expandableCheckboxList);
+    if (!click) {
+        expandableCheckboxList.classList.remove('expandable-checkbox-list_expanded');
+    }
+});
+
 document.addEventListener('keydown', function (e) {
-    if (e.key === 'Tab' || e.key === 'Escape') {
-        CheckBoxList.classList.remove('checkbox-list--visible');
+    if (e.key === 'Escape') {
+        expandableCheckboxList.classList.remove('expandable-checkbox-list_expanded');
     }
 });
