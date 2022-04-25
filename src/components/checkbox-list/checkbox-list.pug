@@ -1,0 +1,7 @@
+include ../checkbox/checkbox
+
+mixin checkbox-list(checkboxList, id)
+    ul.checkbox-list(id = id ? id : false)
+        each item in checkboxList 
+            li.checkbox-list__item 
+                +checkbox(item)
