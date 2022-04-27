@@ -1,0 +1,7 @@
+include ../link/link
+
+mixin link-list(linkList, id)
+    ul.link-list(id = id)
+        each item in linkList
+            li.link-list__item
+                +link(item)
