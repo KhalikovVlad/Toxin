@@ -1,0 +1,16 @@
+mixin like(like, lang)
+    -     
+        const {
+            count,
+            active=false
+        } = like;
+            
+    button(
+        class = active ? 'like like_active js-like' : 'like js-like'
+        data-active = active ? true : false
+    )
+        span.like__icon.js-like__icon(
+            aria-hidden = 'true'
+            class = active ? '_icon-favorite' : '_icon-favorite_border'
+            ) 
+        span.like__count.js-like__count(aria-hidden = 'true') #{count}
