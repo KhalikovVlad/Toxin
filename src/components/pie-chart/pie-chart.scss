@@ -1,0 +1,95 @@
+// pie chart
+
+.pie-chart {
+    width: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    // pie chart container
+
+    &__container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+    }
+
+    // pie chart canvas
+
+    &__canvas {
+        position: absolute;
+        cursor: help;
+        border-radius: 50%;
+    }
+
+    // pie chart label 
+
+    &__label {
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 88%;
+        height: 88%;
+        border-radius: 50%;
+        background-color: white;
+        font: $h1-font;
+        color: $purple;
+        font-weight: bold;
+        pointer-events: none;
+
+        & .pie-chart__number {
+            font: $body-font;
+        }
+    }
+
+    &__legend {
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column-reverse;
+        font: $body-font;
+        color: $dark-shade-75per;
+        list-style: none;
+    }
+
+    &__legend-item {
+        position: relative;
+        padding-left: 15px;
+        line-height: 23px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0; 
+            top: 7px;
+            width: 10px; 
+            height: 10px;
+            border-radius: 50%;
+        } 
+        
+        &.item1{
+            &::before {
+                background: $yellow-gradient;
+            } 
+        }
+        &.item2{
+            &::before {
+                background: $green-gradient;
+            }      
+        }
+        &.item3{
+            &::before {
+                background: $purple-gradient;
+            }      
+        }
+        &.item4{
+            &::before {
+                background: $black-gradient;
+            }              
+        } 
+    }
+}

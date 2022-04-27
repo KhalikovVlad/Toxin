@@ -1,0 +1,19 @@
+mixin pie-chart(countList)
+    .pie-chart
+        .pie-chart__container
+            p.pie-chart__label 260
+                span.pie-chart__number голосов
+            canvas.pie-chart__canvas.js-pie-chart__canvas(id='myChart' width='120px' height='120px') 
+        .pie-chart__legends    
+            dl.pie-chart__legend
+                dt.pie-chart__legend-item.item1 Великолепно
+                    dd.pie-chart__legend-number
+            dl.pie-chart__legend
+                dt.pie-chart__legend-item.item2 Хорошо
+                    dd.pie-chart__legend-number
+            dl.pie-chart__legend
+                dt.pie-chart__legend-item.item3 Удовлетворительно
+                    dd.pie-chart__legend-number
+            dl.pie-chart__legend
+                dt.pie-chart__legend-item.item4 Разачарован
+                    dd.pie-chart__legend-number
