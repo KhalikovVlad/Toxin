@@ -1,0 +1,104 @@
+// link 
+
+.link {
+    cursor: pointer;
+    display: flex;
+
+    &:focus {
+        outline: $custom-outline;
+        outline-offset: 2px;
+    }  
+
+    &:disabled {
+        cursor: default;
+    }
+
+    &:not(.link-button) {
+        width: max-content;
+        font: $body-font;
+        color: $dark-shade-50per;
+        line-height: 18px;
+    }
+
+    &:hover:not(.link-button) {
+        text-decoration: underline;
+        color: $dark-shade-75per;
+    }
+
+    &:active:not(.link-button) {
+        color: $purple;
+    }
+
+    // link bold
+
+    &-bold:not(.link-button) {
+        font-weight: bold;
+        color: $dark-shade-75per;
+    
+        &:hover {
+            color: $dark-shade-100per;
+        }
+    
+        &:active:not(.link-button) {
+            color: $purple;
+        }
+    }
+
+    // link button
+
+    &-button {
+        width: min(100%, 320px);
+        height: min(100%, 44px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 22px;
+        font: $h3-font;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    // link filled
+
+    .link-filled {
+        padding: 0px 20px;
+        background: $purple-gradient;
+        color: white;
+    
+        &:active {
+            opacity: .5;
+            transition: opacity .3s;
+        }
+    
+        &:disabled {
+            opacity: .5;
+            transition: opacity .3s;
+        }
+    
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }
+    }
+
+    // link with border
+
+    .link-with-border {
+        padding: 0px 18px;
+        border: $purple-border;
+        color: $purple;
+    
+        &:active {
+            border-color: $purple-50per;
+            transition: border-color .3s;
+        }
+    
+        &:disabled {
+            border-color: $purple-50per;
+            transition: border-color .3s;
+        }
+    
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }
+    }
+}

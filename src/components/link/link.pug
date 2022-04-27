@@ -1,0 +1,21 @@
+mixin link(link)
+    -
+        const {
+            href,
+            label,
+            title,
+            bold,
+            button,
+            fill,
+            border
+        } = link;
+        let classes = 'link';
+        classes = bold ? `${classes} link-bold` :  classes;
+        classes = button ? `${classes} link-button` :  classes;
+        classes = fill ? `${classes} link-filled` : classes;
+        classes = border ? `${classes} link-with-border` : classes;
+    a(
+        class = classes
+        href = href
+        title = title
+    )  #{label}
