@@ -1,5 +1,6 @@
 // logo
 .logo {
+    cursor: pointer;
     &__title {
         fill: $dark-shade-100per;
         transition: fill 0.3s;
