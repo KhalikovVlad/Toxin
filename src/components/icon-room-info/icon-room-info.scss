@@ -1,0 +1,54 @@
+// icon-room-info
+
+.icon-room-info {
+    width: min(100%, 280px); 
+    display: grid;
+    row-gap: 20px;
+
+    // feature list item 
+
+    &__item {
+        display: grid;
+        grid-template-areas: 
+            'icon label'
+            'icon description';
+        grid-template-columns: max-content;
+        column-gap: 10px;
+        
+        &:not(:last-child) {
+            padding-bottom: 20px;
+            border-bottom: $dark-shade-border-25per;
+            border-color: $dark-shade-15per;
+        }
+    }
+
+    // icon-room-info icon
+
+    &__icon {
+        grid-area: icon;
+        font: $icon-font;
+        font-size: 48px;
+        background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+        background-clip: text;  
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: default;
+    }
+
+    // icon-room-info label
+
+    &__label {
+        grid-area: label;
+        font: $body-font;
+        font-weight: bold;
+        color: $dark-shade-75per;
+    }
+
+    // icon-room-info description 
+
+    &__description {
+        grid-area: 'description';
+        font: $body-font;
+        color: $dark-shade-75per;
+    }
+}
