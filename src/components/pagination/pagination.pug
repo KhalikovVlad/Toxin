@@ -1,9 +1,20 @@
-.paginator
-    a.current(href="#1") 1
-    a(href="#2") 2
-    a(href="#3") 3
-    span &hellip;
-    a(href="#15") 15
-    a.next(href="#next")
-        img(src=require('./img/arrow_forward.svg'))
-    p 1 – 12 из 100+ вариантов аренды
+mixin pagination(pagination)
+    -
+        const { description } = pagination;
+
+    .pagination
+        ul.pagination__list
+            li.pagination__item.pagination__item_active
+                a.pagination__link(title = `1-я страница, Вы здесь` aria-label = `1-я страница`) 1
+            li.pagination__item
+                a.pagination__link(title = `2-я страница` aria-label = `2-я страница`) 2
+            li.pagination__item
+                a.pagination__link(title = `3-я страница` aria-label = `3-я страница`) 3
+            li.pagination__item
+                a.pagination__link(title = `Следующие страницы` aria-label = `Следующие страницы`) &hellip;
+            li.pagination__item
+                a.pagination__link(title = `15-я страница` aria-label = `15-я страница`) 15
+            li.pagination__item.pagination__item_next
+                a.pagination__link._icon-arrow_forward(title = 'Следующая страница' aria-label = 'Следующая страница')
+        if description
+            span.pagination__description #{description}
