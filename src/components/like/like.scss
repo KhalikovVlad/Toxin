@@ -1,0 +1,50 @@
+// like
+
+.like {
+    width: 41px; 
+    height: 20px;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: $dark-shade-border-25per;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:focus {
+        outline: $custom-outline;
+        outline-offset: 1px;
+    }
+
+    &:hover:not(:disabled) {
+        box-shadow: $shadow-hover;
+    }
+
+    &_active {
+        border-color: $purple;
+    }
+
+    // like count
+
+    &__count {
+        font: $body-font;
+        font-size: 10px;
+        line-height: 12px;
+        color: $dark-shade-25per;
+    }
+
+    // like icon
+
+    &__icon {
+        width: 20px;
+        font: $icon-font;
+        font-size: 10px;
+        color: $dark-shade-25per;
+    }
+
+    &_active { 
+        & .like__icon, 
+        & .like__count {
+            color: $purple;
+        }
+    }
+}
