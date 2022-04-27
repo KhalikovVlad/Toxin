@@ -1,0 +1,12 @@
+// logo
+.logo {
+    &__title {
+        fill: $dark-shade-100per;
+        transition: fill 0.3s;
+    }
+
+    &:hover .logo__title {
+        fill: $purple;
+        transition: fill 0.3s;
+    }
+}
