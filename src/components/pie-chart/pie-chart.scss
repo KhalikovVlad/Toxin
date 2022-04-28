@@ -1,77 +1,77 @@
-/* pie chart */
+// pie chart 
 
 .pie-chart {
     width: max-content;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-}
 
-/* container */
+    // pie chart container
 
-.pie-chart__container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 8.64285714286rem;
-    height: 8.64285714286rem;
-}
-
-/* canvas */
-
-.pie-chart__canvas {
-    position: absolute;
-    cursor: help;
-    border-radius: 50%;
-}
-
-/* label */
-
-.pie-chart__label {
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 88%;
-    height: 88%;
-    border-radius: 50%;
-    background-color: white;
-    font: $body-font;
-    color: $purple;
-    font-weight: bold;
-    pointer-events: none;
-
-    & .pie-chart__number {
-        font: $h1-font;
+    &__container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 120px;
     }
-}
 
-/* legend */
+    // pie chart canvas 
 
-.pie-chart__legend {
-    margin-left: 2.14285714286rem;
-    display: flex;
-    flex-direction: column-reverse;
-    font: $body-font;
-    color: $dark-shade-75per;
-    list-style: none;
-}
-
-.pie-chart__legend-item {
-    position: relative;
-    padding-left: 1.07142857143rem;
-    line-height: 1.64285714286rem;
-
-    &:before {
-        content: '';
+    &__canvas {
         position: absolute;
-        left: 0; 
-        top: 0.5rem;
-        width: 0.71428571428rem; 
-        height: 0.71428571428rem;
+        cursor: help;
         border-radius: 50%;
-        background-color: var(--chart-color);
+    }
+
+    // pie chart label 
+
+    &__label {
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 88%;
+        height: 88%;
+        border-radius: 50%;
+        background-color: white;
+        font: $body-font;
+        color: $purple;
+        font-weight: bold;
+        pointer-events: none;
+
+        & .pie-chart__number {
+            font: $h1-font;
+        }
+    }
+
+    // pie chart legend 
+
+    &__legend {
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column-reverse;
+        font: $body-font;
+        color: $dark-shade-75per;
+        list-style: none;
+    }
+
+    &__legend-item {
+        position: relative;
+        padding-left: 15px;
+        line-height: 23px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0; 
+            top: 7px;
+            width: 10px; 
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--chart-color);
+        }
     }
 }
