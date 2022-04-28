@@ -1,19 +1,30 @@
-mixin pie-chart(countList)
-    .pie-chart
-        .pie-chart__container
-            p.pie-chart__label 260
-                span.pie-chart__number голосов
-            canvas.pie-chart__canvas.js-pie-chart__canvas(id='myChart' width='120px' height='120px') 
-        .pie-chart__legends    
-            dl.pie-chart__legend
-                dt.pie-chart__legend-item.item1 Великолепно
-                    dd.pie-chart__legend-number
-            dl.pie-chart__legend
-                dt.pie-chart__legend-item.item2 Хорошо
-                    dd.pie-chart__legend-number
-            dl.pie-chart__legend
-                dt.pie-chart__legend-item.item3 Удовлетворительно
-                    dd.pie-chart__legend-number
-            dl.pie-chart__legend
-                dt.pie-chart__legend-item.item4 Разачарован
-                    dd.pie-chart__legend-number
+mixin pie-chart(pieChart, lang)
+    -
+        const pluralize = require('./../../globals/helpers/pluralize.js');
+        const uniqid = require('uniqid');
+        const id = uniqid();
+
+        const i18n = require('../../components/pie-chart/i18n.json')[lang='ru'];
+        const {
+            VOTE_PLURAL, 
+            DELIGHTFULLY,
+            GOOD, 
+            SATISFACTORILY,
+            DISAPPOINTED
+        } = i18n;
+
+        const labelList = [ DISAPPOINTED, SATISFACTORILY, GOOD, DELIGHTFULLY ];
+        const colorList = [ '#919191', '#BC9CFF', '#6FCF97', '#FFE39C' ];
+        const countList = [ 0, 65, 65, 130 ];
+        const sumCount = countList.reduce((sum, item) => sum += item, 0);
+
+    .pie-chart.js-pie-chart(data-counts=countList data-labels=labelList data-colors=colorList)
+        .pie-chart__container.js-pie-chart__container
+            canvas.pie-chart__canvas.js-pie-chart__canvas(role ='img' aria-labelledby=`pie-chart-label-${id}` id='myChart' width='120px' height='120px')
+            p.pie-chart__label(id = `pie-chart-label-${id}`) 
+                span.pie-chart__number #{sumCount}
+                | #{pluralize(lang, VOTE_PLURAL, sumCount)}
+        dl.pie-chart__legend
+            each item, index in labelList
+                dt.pie-chart__legend-item(style = `--chart-color: ${colorList[index]}`) #{item}
+                dd.pie-chart__legend-number.visually-hidden
