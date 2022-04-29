@@ -1,20 +1,13 @@
 mixin pagination(pagination)
     -
-        const { description } = pagination;
+        const {
+            totalPages,
+            currentPage,
+            description
+        } = pagination
 
-    .pagination
-        ul.pagination__list
-            li.pagination__item.pagination__item_active
-                a.pagination__link(title = `1-я страница, Вы здесь` aria-label = `1-я страница`) 1
-            li.pagination__item
-                a.pagination__link(title = `2-я страница` aria-label = `2-я страница`) 2
-            li.pagination__item
-                a.pagination__link(title = `3-я страница` aria-label = `3-я страница`) 3
-            li.pagination__item
-                a.pagination__link(title = `Следующие страницы` aria-label = `Следующие страницы`) &hellip;
-            li.pagination__item
-                a.pagination__link(title = `15-я страница` aria-label = `15-я страница`) 15
-            li.pagination__item.pagination__item_next
-                a.pagination__link._icon-arrow_forward(title = 'Следующая страница' aria-label = 'Следующая страница')
+    .pagination.js-pagination(data-total = totalPages data-current = currentPage)
+        ul.pagination__ul.js-pagination__ul
+
         if description
             span.pagination__description #{description}
