@@ -6,12 +6,16 @@ mixin checkbox(checkbox)
             label,
             title,
             description,
+            checked=false,
+            disabled=false
         } = checkbox;
 
     label.checkbox
         input.checkbox__input(
             type = 'checkbox'
-            title = title ? title : false  
+            title = title ? title : false 
+            checked = checked ? true : false 
+            disabled = disabled ? true : false
         )
 
         if description 
