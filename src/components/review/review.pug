@@ -17,11 +17,8 @@ mixin review(review)
             alt = `${alt}`
             title = `${title}`
         )
-
-        div.review__like
+        .review__like
             +like(like)
-
-        h3.review__name #{userName}
-        
+        h3.review__name #{userName}       
         time.review__pubdate.js-review__pubdate(datetime)
         p.review__text #{text}
