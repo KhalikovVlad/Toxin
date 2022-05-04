@@ -1,7 +1,16 @@
 include ./rate-button/rate-button
 
-mixin rate-bar(rateBar)
+mixin rate-bar(rateBar, lang)
     -
+        const pluralize = require('../../globals/helpers/pluralize.js');
+
+        const i18n = require('../../components/rate-bar/i18n.json')[lang='ru']; 
+        const {
+            STAR_PLURAL,
+            OUT_OF,
+            RATING
+        } = i18n;
+
         const {
             name,
             count,
@@ -12,7 +21,7 @@ mixin rate-bar(rateBar)
     fieldset.rating
         .rating__rate-bar(
             role = 'radiogroup',
-            aria-label = `${rating} ${count}`
+            aria-label = `${RATING}: ${rating} ${OUT_OF} ${count} ${pluralize(lang, STAR_PLURAL, count)}`
         )
             - let index = 0;
             while index < count
@@ -26,6 +35,6 @@ mixin rate-bar(rateBar)
                     disabled, 
                     checked,
                     value: index, 
-                    title: `${index}`,
-                    ariaLabel: `${index}`
+                    title: `${index} ${pluralize(lang, STAR_PLURAL, index)}`,
+                    ariaLabel: `${index} ${pluralize(lang, STAR_PLURAL, index)}`
                 })
