@@ -1,0 +1,16 @@
+mixin rate-button(rateButton)
+    -
+        const {
+            name,
+            value,
+            checked=false,
+            disabled=false
+        } = rateButton;
+        
+    input.rate-button(
+        type = 'radio'
+        name = name
+        value = value
+        checked = checked ? true : false
+        disabled = disabled ? true : false
+    )
