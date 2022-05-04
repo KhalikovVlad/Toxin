@@ -3,6 +3,7 @@ mixin radio-button(radioButton)
         const {
             name,
             label,
+            value,
             checked=false,
             disabled=false
         } = radioButton;
@@ -11,6 +12,7 @@ mixin radio-button(radioButton)
         input.radio-button__input(
             type = 'radio' 
             name = name 
+            value = value
             checked = checked ? true : false
             disabled = disabled ? true : false
         )
