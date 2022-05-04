@@ -1,0 +1,19 @@
+include ./radio-button/radio-button
+
+mixin radio-bar(radioBar)
+    -
+        const {
+            name,
+            radioButtons,
+        } = radioBar;
+
+    .radio-bar(
+        role = 'radiogroup'
+    )
+        each item in radioButtons
+            +radio-button({
+                name,
+                disabled,
+                checked: item.checked,
+                label: item.label
+            })
