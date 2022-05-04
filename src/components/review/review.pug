@@ -1,0 +1,27 @@
+include ../like/like
+
+mixin review(review)
+    -
+        const {
+            text,
+            like,
+            src,
+            alt,
+            title,
+            userName 
+        } = review;
+
+    article.review.js-review
+        img.review__avatar(
+            src = `${src}`
+            alt = `${alt}`
+            title = `${title}`
+        )
+
+        div.review__like
+            +like(like)
+
+        h3.review__name #{userName}
+        
+        time.review__pubdate.js-review__pubdate(datetime)
+        p.review__text #{text}
