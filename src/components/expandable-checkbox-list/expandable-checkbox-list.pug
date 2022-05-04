@@ -1,6 +1,6 @@
-include ../../components/checkbox-list/checkbox-list
+include ../checkbox-list/checkbox-list
 
-mixin expandable-checkbox-list(expandableCheckboxList, lang)
+mixin expandable-checkbox-list(expandableCheckboxList)
     -
         const uniqid = require('uniqid');
         const id = uniqid();
@@ -8,6 +8,7 @@ mixin expandable-checkbox-list(expandableCheckboxList, lang)
         const {
             label,
             expanded=false,
+            disabled=false,
             title,
             checkboxList
         } = expandableCheckboxList;
@@ -16,6 +17,9 @@ mixin expandable-checkbox-list(expandableCheckboxList, lang)
         button.expandable-checkbox-list__button.js-expandable-checkbox-list__button(
             type = 'button'
             title = title 
+            disabled = disabled ? true : false
+            aria-expanded = `${expanded}`
+            aria-controls = `checkbox-list-${id}`
         )
             span.expandable-checkbox-list__label #{label}
             span.expandable-checkbox-list__icon._icon-expand_more(aria-hidden = true)
