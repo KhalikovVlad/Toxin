@@ -1,2 +1,94 @@
-mixin input(cls= 'button', type= 'submit', value= '', autocomplete= 'off', name= 'email', onfocus= '', id= '')
-    input.input(class= `${cls}` type=`${type}` value=`${value}` autocomplete=`${autocomplete}` name= `${name}` onfocus= `${onfocus}` id= `${id}`)
+mixin text-field(textField)
+    -
+        const {
+            name,
+            label,
+            type,
+            value,
+            title,
+            dateMask,
+            tabindex,
+            placeholder,
+            ariaLabel,
+            ariaExpanded,
+            ariaControls,
+            readonly=false,
+            required=false,
+            spellcheck=false,
+            disabled=false,
+            autofocus=false,
+            input={},
+            button,
+            icon,
+            controllClass,
+            activeClass
+        } = textField;
+
+        let rootClasses = 'text-field js-text-field';
+
+        rootClasses = button ? `${rootClasses} text-field_with_button` : icon ? `${rootClasses} text-field_with_icon` : rootClasses;
+        rootClasses = type === 'button' ? `${rootClasses} text-field_type_button` : rootClasses;
+        rootClasses = controlClass ? `${rootClasses} ${controlClass}` : rootClasses;
+        rootClasses = activeClass ? `${rootClasses} ${activeClass}` : rootClasses;
+
+    div(class = rootClasses)
+        label.text-field__input-container
+            if label
+                span.text-field__label #{label}
+
+            -let inputClasses = 'text-field__input js-text-field__input';
+            -inputClasses = input.controlClass ? `${inputClasses} ${input.controlClass}` : 'text-field__input js-text-field__input';
+            -inputClasses = input.activeClass ? `${inputClasses} ${input.activeClass}` : 'text-field__input js-text-field__input';
+
+            input(
+                class = inputClasses
+                type = type
+                name = (type !== 'button') ? name : false
+                value = (type !== 'button') ? value : placeholder
+                placeholder = (type !== 'button') ? placeholder : false
+                readonly = readonly ? true : false
+                required = (type !== 'button') ? required ? true : false : false
+                spellcheck = spellcheck ? true : false
+                disabled = disabled ? true : false
+                autofocus = autofocus ? true : false
+                title = title
+                aria-label = ariaLabel
+                aria-expanded = ariaExpanded
+                aria-controls = ariaControls
+                tabindex = tabindex
+                data-date-mask = dateMask
+                data-placeholder = (type === 'button') ? placeholder : false
+                data-title = (type === 'button') ? title : false
+            )
+
+            if !button
+                if icon 
+                    span(
+                        class = icon.activeClass ? `text-field__icon ${icon.activeClass}` : 'text-field__icon'
+                        aria-hidden = 'true'
+                        class = `${icon}`
+                    )
+
+        if type === 'button' && name 
+            input.text-field__hidden-input.js-text-field__hidden-input(
+                name = name 
+                required = required ? true : false 
+                disabled = disabled ? true : false 
+                tabindex = '-1'
+                aria-hidden = 'true'
+            )
+        
+        if button 
+            button.text-field__button(
+                type ='submit'
+                aria-label = button.ariaLabel 
+                title = button.title
+            )
+                if icon 
+                    span(
+                        class = icon.activeClass ? `text-field__icon ${icon.activeClass}` : 'text-field__icon'
+                        aria-hidden = 'true'
+                        class = `${icon}`
+                    )
+                else if block 
+                    block
