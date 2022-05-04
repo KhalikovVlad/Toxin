@@ -3,6 +3,7 @@ mixin rate-button(rateButton)
         const {
             name,
             value,
+            ariaLabel,
             checked=false,
             disabled=false
         } = rateButton;
@@ -11,6 +12,7 @@ mixin rate-button(rateButton)
         type = 'radio'
         name = name
         value = value
+        aria-label = ariaLabel
         checked = checked ? true : false
-        disabled = disabled ? true : false
+        disabled = disabled ? true : false       
     )
