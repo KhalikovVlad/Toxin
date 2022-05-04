@@ -1,0 +1,52 @@
+// review
+
+.review {
+    width: min(100%, 711px);
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: max-content fit-content(653px);
+    column-gap: 10px;
+
+    // review avatar
+
+    &__avatar {
+        grid-row: span 2;
+        width: 48px; 
+        height: 48px;
+        justify-self: end;
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: $shadow1;
+    } 
+
+    // review like
+
+    &__like {
+        grid-row: 3;
+        padding-top: 10px;
+        justify-self: center;
+    }
+
+    // review name
+
+    &__name {
+        font: $body-font;
+        font-weight: bold;
+        color: $dark-shade-75per;
+    }
+
+    // review date 
+
+    &__pubdate {
+        font: $body-font;
+        color: $dark-shade-75per;
+    }
+
+    // review text
+
+    &__text {
+        padding-top: 10px;
+        font: $body-font;
+        color: $dark-shade-75per;
+    }
+}
