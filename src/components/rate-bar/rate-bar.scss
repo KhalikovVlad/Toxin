@@ -1,0 +1,16 @@
+// rate-bar 
+
+.rating {
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    &__rate-bar {
+        display: flex;
+
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 2px;
+        }
+    }
+}

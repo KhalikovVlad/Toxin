@@ -1,0 +1,31 @@
+include ./rate-button/rate-button
+
+mixin rate-bar(rateBar)
+    -
+        const {
+            name,
+            count,
+            rating,
+            disabled,
+        } = rateBar;
+
+    fieldset.rating
+        .rating__rate-bar(
+            role = 'radiogroup',
+            aria-label = `${rating} ${count}`
+        )
+            - let index = 0;
+            while index < count
+                -
+                    let checked = false;
+                    index++;
+            
+                    if (index === rating) { checked = true; }
+                +rate-button({
+                    name, 
+                    disabled, 
+                    checked,
+                    value: index, 
+                    title: `${index}`,
+                    ariaLabel: `${index}`
+                })
