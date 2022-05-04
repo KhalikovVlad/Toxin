@@ -1,13 +1,24 @@
-mixin like(like)
+mixin like(like, lang)
     -     
+        const pluralize = require('../../globals/helpers/pluralize.js');
+
+        const i18n = require('../../components/like/i18n.json')[lang='ru']; 
+        const {
+            PEOPLE_RATED_PLURAL,
+            RATE, 
+            REMOVE_RATING
+        } = i18n;
+
         const {
             count,
             active=false
-        } = like;
+        } = like;     
             
     button(
         class = active ? 'like like_active js-like' : 'like js-like'
         data-active = active ? true : false
+        aria-label = `${count} ${pluralize(lang, PEOPLE_RATED_PLURAL, count)}. ${active ? REMOVE_RATING : RATE}`
+        title = `${count} ${pluralize(lang, PEOPLE_RATED_PLURAL, count)}. ${active ? REMOVE_RATING : RATE}`
     )
         span.like__icon.js-like__icon(
             aria-hidden = 'true'
