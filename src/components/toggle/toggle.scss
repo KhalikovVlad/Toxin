@@ -1,51 +1,68 @@
-.toggle {
-    position: relative;
-    height: 24px;
-    width: 260px;
-    label {
+// toggle 
+
+.toggle {   
+    display: flex;
+    cursor: pointer;
+
+    // toggle input 
+
+    &__input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 41px;
+        height: 21px;
+        margin-right: 10px;
+        padding: 0px 4px;
         display: flex;
         align-items: center;
+        border: $dark-shade-border-25per;
+        border-radius: 10px;
+        cursor: inherit;
+    
+        &:before {
+            content: '';
+            width: 13px;
+            height: 13px;
+            border-radius: 10px;
+            background: $dark-shade-25per;
+            transition: transform .3s;
+        }  
+    
+        &:checked {
+            border-color: $purple;
+        }
+    
+        &:checked:before {
+            background: $purple-gradient;
+            transform: translateX(135%);
+            transition: transform .3s;
+        }
+    
+        &:checked:disabled::before {
+            background: $dark-shade-25per;
+        }
+    
+        &:disabled {
+            border-color: $dark-shade-5per;
+            cursor: default;
+        }
+        
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 1px;
+        }
+    
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }
     }
-    p {
-        margin: 0px 0px 0px 10px;
-        color: $dark-shade-75per;
+
+    // toggle label 
+
+    &__label {
         font: $body-font;
-        line-height: 24px;
+        line-height: 18px;
+        color: $dark-shade-75per;
     }
-}
-
-input[type='checkbox'] {
-    position: relative;
-    width: 40px;
-    height: 20px;
-    border-radius: 10px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    background: white;
-    border: 1px solid $dark-shade-25per;
-    transition: all 0.3s ease 0s;
-    margin: 0;
-}
-
-input:checked[type='checkbox'] {
-    border-color: $purple;
-}
-
-input[type='checkbox']::before {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 10px;
-    top: 3px;
-    left: 3px;
-    background: $dark-shade-25per;
-    transition: left 0.3s ease 0s;
-}
-
-input:checked[type='checkbox']::before {
-    background: $purple-gradient;
-    left: 23px;
 }
