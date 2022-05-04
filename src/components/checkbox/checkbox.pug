@@ -3,6 +3,7 @@ mixin checkbox(checkbox)
         const uniqid = require('uniqid');
         const id = uniqid();
         const {
+            name,
             label,
             title,
             description,
@@ -16,6 +17,8 @@ mixin checkbox(checkbox)
             title = title ? title : false 
             checked = checked ? true : false 
             disabled = disabled ? true : false
+            aria-labelledby = description ? `checkbox-label-${id}` : false
+            aria-describedby = description ? `checkbox-description-${id}` : false
         )
 
         if description 
