@@ -62,9 +62,8 @@ mixin text-field(textField)
             if !button
                 if icon 
                     span(
-                        class = icon.activeClass ? `text-field__icon ${icon.activeClass}` : 'text-field__icon'
+                        class = icon.activeClass ? `text-field__icon ${icon.activeClass} ${icon.icon}` : `text-field__icon ${icon.icon}`
                         aria-hidden = 'true'
-                        class = `${icon}`
                     )
 
         if type === 'button' && name 
@@ -84,9 +83,8 @@ mixin text-field(textField)
             )
                 if icon 
                     span(
-                        class = icon.activeClass ? `text-field__icon ${icon.activeClass}` : 'text-field__icon'
+                        class = icon.activeClass ? `text-field__icon ${icon.activeClass} ${icon.icon}` : `text-field__icon ${icon.icon}`
                         aria-hidden = 'true'
-                        class = `${icon}`
                     )
                 else if block 
                     block
