@@ -1,12 +1,27 @@
-.filters 
-    .filters__item.filters-price 
-        h3.filters-price__title Диапазон цены
-        .filters-price__inputs 
-            label.filters-price__label             
-                input.filters-price__input(type="number" min="0" max="15000" id="range-1")
-                span.filters-price__text ₽ -
-            label.filters-price__label
-                input.filters-price__input(type="number" min="0" max="15000" id="range-2")
-                span.filters-price__text ₽
-    .filters__slider(id="range-slider")
-    p Стоимость за сутки пребывания в номере
+mixin slider(slider, lang='ru')
+    -
+        const {
+            label,
+            range,
+            name,
+            initValue,
+            step,
+            margin 
+        } = slider;
+
+    .slider.js-slider
+        label.slider__label
+            span #{label}
+            input.slider__input.js-slider__input(
+                name = name
+                type = 'text' 
+                tabindex = '-1' 
+                readonly
+            )
+        .slider__range.js-slider__range(
+            data-range = range 
+            data-init-value = initValue 
+            data-step = step
+            data-margin = margin
+            data-lang = lang
+        )
