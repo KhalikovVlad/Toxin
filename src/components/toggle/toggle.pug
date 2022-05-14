@@ -8,12 +8,7 @@ mixin toggle(toggle)
         } = toggle;
         
     label.toggle
-        input.toggle__input(
-            name = name
-            type = 'checkbox'
-            checked = checked ? true : false
-            disabled = disabled ? true : false
-        )
+        input.toggle__input(name = name, type = 'checkbox', checked = checked ? true : false, disabled = disabled ? true : false)
         
         if label
             span.toggle__label #{label}
