@@ -4,9 +4,12 @@ $dark-shade-100per: rgba(31, 32, 65, 100%);
 $dark-shade-75per: rgba(31, 32, 65, 75%);
 $dark-shade-50per: rgba(31, 32, 65, 50%);
 $dark-shade-25per: rgba(31, 32, 65, 25%);
+$dark-shade-15per: rgba(31, 32, 65, 15%);
 $dark-shade-5per: rgba(31, 32, 65, 5%);
 
 $purple: #BC9CFF;
+$purple-50per: rgba(188, 156, 255,  50%);
+$purple-25per: rgba(188, 156, 255,  25%);
 $purple-gradient: linear-gradient(#BC9CFF, #8BA4F9);
 
 $green: #6FCF97;
@@ -21,18 +24,31 @@ $regular-font: normal 12px "montserrat", sans-serif;
 $h1-font: normal bold 24px "Montserrat", sans-serif;
 $h2-font: normal bold 19px "Montserrat", sans-serif;
 $h3-font: normal bold 12px "Montserrat", sans-serif;
+$icon-font: normal 100%/100% "icons";
 
 //  box-shadow
 
 $shadow1: 0px 10px 20px $dark-shade-5per;
+$shadow2: 0px 0px 25px rgba(0, 0, 0, 20%);
+$shadow3: 0 1px 0 $dark-shade-5per;
+$shadow-hover: 0 0 2px $dark-shade-75per;
 
-// border
+// border & outline
 
-$border-radius-22px: 22px;
+$dark-shade-border-25per: 1px solid $dark-shade-25per;
+$shade-border-12per: 1px solid rgba(0, 0, 0, 12%);
+$purple-border: 2px solid $purple;
+$custom-outline: 1px dotted $purple-50per;
 
 // text-transform
 
 $uppercase: uppercase;
+
+
+// padding
+
+$padding-20px: 20px;
+$padding-6_25per: 6.25%;
 
 // breakpoints
 
