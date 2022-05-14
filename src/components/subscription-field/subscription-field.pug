@@ -1,0 +1,22 @@
+include ../text-field/text-field
+
+mixin subscription-field(showLabel)
+
+    form.subscription-field(name = 'subsription')  
+
+        +text-field({ 
+            label: showLabel ? 'Подписка' : false,
+            type: 'email', 
+            placeholder: 'Email',
+            required: true,
+            title: 'Введите email',
+            ariaLabel: showLabel ? false : 'Подписка',
+            button: {
+                ariaLabel: 'Подписаться',
+                title: 'Подписаться'
+            },
+            icon: {
+                activeClass: 'subscription-field__icon',
+                icon: '_icon-arrow_forward'
+            }        
+        })
