@@ -8,10 +8,4 @@ mixin rate-button(rateButton)
             disabled=false
         } = rateButton;
         
-    input.rate-button(
-        type = 'radio'
-        name = name
-        value = value
-        aria-label = ariaLabel
-        checked = checked ? true : false
-        disabled = disabled ? true : false)
+    input.rate-button(type = 'radio', name = name, value = value, aria-label = ariaLabel, checked = checked ? true : false, disabled = disabled ? true : false)
