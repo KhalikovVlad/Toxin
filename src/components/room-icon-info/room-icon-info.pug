@@ -1,0 +1,13 @@
+mixin room-icon-info(roomIconInfo)
+    -
+        const {
+            icon,
+            label,
+            description
+        } = roomIconInfo;
+
+    dl.room-icon-info
+        .room-icon-info__item
+            .room-icon-info__icon(aria-hidden = 'true', class = `${icon}`)
+            dt.room-icon-info__label #{label}
+            dd.room-icon-info__description #{description}
