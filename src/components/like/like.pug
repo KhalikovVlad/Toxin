@@ -1,14 +1,5 @@
-mixin like(like, lang)
+mixin like(like)
     -
-        const pluralize = require('../../globals/helpers/pluralize.js');
-
-        const i18n = require('../../components/like/i18n.json')[lang='ru']; 
-        const {
-            PEOPLE_RATED_PLURAL,
-            RATE, 
-            REMOVE_RATING
-        } = i18n;
-
         const {
             count,
             active=false
@@ -16,12 +7,8 @@ mixin like(like, lang)
             
     button(
         class = active ? 'like like_active js-like' : 'like js-like'
-        data-active = active ? true : false
-        aria-label = `${count} ${pluralize(lang, PEOPLE_RATED_PLURAL, count)}. ${active ? REMOVE_RATING : RATE}`
-        title = `${count} ${pluralize(lang, PEOPLE_RATED_PLURAL, count)}. ${active ? REMOVE_RATING : RATE}`
-    )
-        span.like__icon.js-like__icon(
-            aria-hidden = 'true'
-            class = active ? '_icon-favorite' : '_icon-favorite_border'
-            ) 
+        aria-label = `${active ? 'Снять оценку' : 'Оценить'}`
+        title = `${active ? 'Снять оценку' : 'Оценить'}`)
+        
+        span.like__icon.js-like__icon(aria-hidden = 'true', class = active ? '_icon-favorite' : '_icon-favorite_border') 
         span.like__count.js-like__count(aria-hidden = 'true') #{count}
