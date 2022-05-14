@@ -1,4 +1,4 @@
-mixin slider(slider, lang='ru')
+mixin range-slider(rangeSlider)
     -
         const {
             label,
@@ -7,21 +7,10 @@ mixin slider(slider, lang='ru')
             initValue,
             step,
             margin 
-        } = slider;
+        } = rangeSlider;
 
     .slider.js-slider
         label.slider__label
             span #{label}
-            input.slider__input.js-slider__input(
-                name = name
-                type = 'text' 
-                tabindex = '-1' 
-                readonly
-            )
-        .slider__range.js-slider__range(
-            data-range = range 
-            data-init-value = initValue 
-            data-step = step
-            data-margin = margin
-            data-lang = lang
-        )
+            input.slider__input.js-slider__input(name = name, type = 'text', tabindex = '-1', readonly)           
+        .slider__range.js-slider__range(data-range = range, data-init-value = initValue, data-step = step, data-margin = margin)
