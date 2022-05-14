@@ -12,11 +12,7 @@ mixin review(review)
         } = review;
 
     article.review.js-review
-        img.review__avatar(
-            src = `${src}`
-            alt = `${alt}`
-            title = `${title}`
-        )
+        img.review__avatar(src = `${src}`, alt = `${alt}`, title = `${title}`)       
         .review__like
             +like(like)
         h3.review__name #{userName}       
