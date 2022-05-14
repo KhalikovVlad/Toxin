@@ -3,7 +3,7 @@
 .button {
     cursor: pointer;
 
-    &:focus {
+    &:focus:not(:disabled) {
         outline: $custom-outline;
         outline-offset: 2px;
     }
@@ -26,7 +26,7 @@
         border: $purple-border;
         color: $purple;
     
-        &:active { 
+        &:active:not(:disabled) { 
             opacity: 0.5;
             transition: opacity .2s;
         }
@@ -45,7 +45,7 @@
         background: $purple-gradient;
         color: white;
     
-        &:active {
+        &:active:not(:disabled) {
             opacity: 0.5;
             transition: opacity .2s;
         }
@@ -58,10 +58,10 @@
             box-shadow: $shadow-hover;
         }    
     }
-    &-link {
+    &_link {
         transition: opacity .2s;
     
-        &:active {
+        &:active:not(:disabled) {
             opacity: 0.5;
             transition: opacity .2s;
         }
