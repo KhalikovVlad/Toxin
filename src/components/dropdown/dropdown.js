@@ -1,125 +1,160 @@
-import './globals/test.scss';
+import '../../components/dropdown/counter/counter.js';
+import { setPlaceholder, setTitle, setValue } from  '../../components/text-field/text-field.js';
 
-// Dropdown list
-document.querySelectorAll('.dropdown').forEach(function (dropdownWrapper) {
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownBtn = dropdownWrapper.querySelector('.dropdown__button');
-    const dropdownList = dropdownWrapper.querySelector('.dropdown__list');
-    // Click on button for open/close dropdown
-    dropdownBtn.addEventListener('click', function () {
-        dropdownList.classList.toggle('dropdown__list--visible');
-    });
-    // Click on other place for close dropdown list
-    document.addEventListener('click', (e) => {
-        const click =  e.composedPath().includes(dropdown);
-        if (!click) {
-            dropdownList.classList.remove('dropdown__list--visible');
-        }
-    })
-    // Use "ESC" or "TAB" for close dropdown
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Tab' || e.key === 'Escape') {
-            dropdownList.classList.remove('dropdown__list--visible');
-        }
-    });
-    // Dropdown count
-    const ACTION = {
-        PLUS: 'plus',
-        MINUS: 'minus'
+const normalizeStr = require('../../globals/helpers/normalizeStr.js');
+const pluralize = require('../../globals/helpers/pluralize.js');
+
+document.querySelectorAll('.js-dropdown').forEach(function (dropdownWrapper) {    
+    var textField = dropdownWrapper.querySelector('.js-dropdown__text-field');
+    const button = dropdownWrapper.querySelector('.js-dropdown__button');
+    const container = dropdownWrapper.querySelector('.js-dropdown__container');
+    const counters = container.querySelectorAll('.js-counter');
+    const autoApply = dropdownWrapper.hasAttribute('data-auto-apply');
+    const applyButton = container.querySelector('.js-dropdown__apply-button');
+    const clearButton = container.querySelector('.js-dropdown__clear-button');
+    const countersData = {};
+
+    function setCounterChangeEventListeners() {
+        counters.forEach(counter => counter.addEventListener('counter-changed', (e) => {
+            const name = e.detail.name;
+            const value = e.detail.value;
+            const plural = e.detail.plural;
+            const isBound = e.detail.isBound;
+            const boundplural = e.detail.boundPlural;
+            const boundName = e.detail.boundName;
+
+            if (isBound) {
+                if (!countersData[boundName])
+                    countersData[boundName] = {
+                        name: boundName,
+                        isBound: true,
+                        plural: boundplural,
+                        originData: {}
+                    }
+                countersData[boundName].originData[name] = { name };
+                countersData[boundName].originData[name].plural = plural;
+                countersData[boundName].originData[name].value = value;
+                countersData[boundName].value = Object.values(countersData[boundName].originData).reduce((sumValue, data) => sumValue + data.value, 0);
+            } else {
+                countersData[name] = {
+                    name: name,
+                    plural: plural,
+                    value: value,
+                    isBound: false
+                }
+            }
+        })); 
     };
-
-    const clearBtn = dropdownWrapper.querySelector('.list-item__clear');
-    const applyBtn = dropdownWrapper.querySelector('.list-item__apply');
-    const dropdownText = dropdownWrapper.querySelector('.button-text');
     
-    const calculateItem = (listItem, action) => {
 
-        const span = listItem.querySelector('.count');
 
-        switch (action) {
-            case ACTION.PLUS:
-                span.textContent++;
-                break;
-            case ACTION.MINUS:
-                span.textContent--;
-                break;
-        }
+    const placehodlerStringMaker = (str, item) => (item.value !== 0) ? `${str} ${item.value} ${pluralize(item.plural, item.value)},` : `${str}`;
+    const jsonObjStringMaker = (str, item) => (item.value !== 0) ? `${str} "${item.name}": "${item.value}",` : `${str}`;
+
+    function getStringFromCounters(counters, stringMaker, displayOrigin) {
+        const str = Object.values(counters).reduce((str, counter) => {
+                if (counter.isBound && displayOrigin) {
+                    return `${str} ${getStringFromCounters(counter.originData, stringMaker, displayOrigin)},`;
+                } else {
+                    return stringMaker(str, counter);
+                }
+            }, '')
+            .slice(1, -1);
+
+        return str;
     };
-    document.getElementById('count').addEventListener('click', (e) => {
-        // Click for '-'
-        if (e.target.classList.contains('btn-minus')) {
-            const span = e.target.closest('.dropdown__list-item').querySelector('.count');
-            const btnMinus = e.target.closest('.dropdown__list-item').querySelector('.btn-minus');
-            if (Number(span.textContent) !== 0) {
-                calculateItem(
-                    e.target.closest('.dropdown__list-item'),
-                    ACTION.MINUS
-                )
-            }
-            if (Number(span.textContent) < 1) {
-                btnMinus.classList.add('disabled');
-            }
-        };
-        // Click for '+'
-        if (e.target.classList.contains('btn-plus')) {
-            const span = e.target.closest('.dropdown__list-item').querySelector('.count');
-            const btnMinus = e.target.closest('.dropdown__list-item').querySelector('.btn-minus');
-            calculateItem(
-                e.target.closest('.dropdown__list-item'),
-                ACTION.PLUS
-            );
-            if (Number(span.textContent) > 0) {
-                btnMinus.classList.remove('disabled');
-                clearBtn.classList.remove('hidden');
-            } 
-            clearBtn.addEventListener('click', function () {
-                span1.textContent = 0;
-                span2.textContent = 0;
-                span3.textContent = 0;
-                btnMinus.classList.add('disabled');
-                dropdownText.textContent = 'Сколько гостей';
-            });
-        };
-        // Hide Clear button if total is 0
-        const span1 = document.getElementById('span-1');
-        const span2 = document.getElementById('span-2');
-        const span3 = document.getElementById('span-3');
-        const arraySpans = [Number(span1.textContent), Number(span2.textContent)];
-        const totalSum = arraySpans.reduce((total, span) => {
-            return total + span;
-        }, 0);  
-        if (totalSum === 0 && Number(span3.textContent) === 0) {
-            clearBtn.classList.add('hidden');
-            dropdownText.textContent = 'Сколько гостей';
-        };
-        // plurals
-        applyBtn.addEventListener('click', function () {
-            const plurals = {
-                zero: 'гостей',
-                one : 'гость',
-                two: 'гостя',
-                few: 'гостя',
-                many: 'гостей',
-                other: 'гостей',
-            };
-            const ruleOne = new Intl.PluralRules('ru').select(totalSum);
-            const pluralsOne = plurals[ruleOne];
-            dropdownText.textContent = totalSum + ' ' + pluralsOne;
-            dropdownList.classList.remove('dropdown__list--visible');
 
-            const plurals2 = {
-                zero: 'младенцев',
-                one : 'младенец',
-                two: 'младенца',
-                few: 'младенца',
-                many: 'младенцев',
-                other: 'младенцев',
-            };
-            if (Number(span3.textContent) > 0) {
-            const ruleTwo = new Intl.PluralRules('ru').select(Number(span3.textContent));
-            const pluralsTwo = plurals2[ruleTwo];
-            dropdownText.textContent = totalSum + ' ' + pluralsOne + ', ' + Number(span3.textContent) + ' ' + pluralsTwo;
-            };
-        });
+    function setTextFieldPlaceholder() {
+        const placeholder = normalizeStr(getStringFromCounters(countersData, placehodlerStringMaker, false));
+
+        textField = setPlaceholder(placeholder);
+    };
+
+    function setTextFieldTitle() {
+        const title = getStringFromCounters(countersData, placehodlerStringMaker, true);
+
+        textField = setTitle(title);
+    };
+
+    function setTextFieldValue() {
+        const value = getStringFromCounters(countersData, jsonObjStringMaker, true);
+
+        textField = setValue(value ? `{${value}}` : '');
+    };
+
+    function updateTextField() {
+        setTextFieldPlaceholder();
+        setTextFieldValue();
+        setTextFieldTitle();
+    };
+
+    const setClearButtonDisabledState = () => {
+        const counters = Object.values(countersData);
+        const isDisabled = counters.reduce((acc, counter) => { 
+            if (counter.value) { acc = false; }
+
+            return acc;
+        }, true);
+
+        clearButton.disabled = isDisabled;
+    };
+    
+    const handleManualApply = (e) => {
+        if (e.target === applyButton) { 
+            updateTextField(); 
+            dropdownWrapper.classList.remove('dropdown_expanded');
+        }
+
+        if (e.target === clearButton) {
+            counters.forEach((counter) => counter.dispatchEvent(new CustomEvent('counter-clear')));
+
+            updateTextField();
+        }
+
+        setClearButtonDisabledState();
+    };
+
+    function setManualApply() {
+        applyButton.addEventListener('click', handleManualApply);
+        clearButton.addEventListener('click', handleManualApply);
+
+        setClearButtonDisabledState();
+    };
+
+    function setAutoApply() {
+        counters.forEach((counter) => counter.addEventListener('counter-changed', (e) => updateTextField()));
+    };
+
+    function setCounters() {
+        counters.forEach((counter) => counter);
+    };
+
+    const setApplyMode = () => autoApply ? setAutoApply() : setManualApply();
+
+    setCounterChangeEventListeners();
+    setCounters();
+    setApplyMode();
+    updateTextField();
+
+    // click on dropdown for open/close dropdown-list
+    dropdownWrapper.addEventListener('click', function (e) {
+        if (e.target === button) {
+            dropdownWrapper.classList.toggle('dropdown_expanded')
+        }
+    });
+
+    // click on other place for close dropdown
+    document.addEventListener('click', (e) => {
+        const click =  e.composedPath().includes(dropdownWrapper);
+        if (!click) {
+            dropdownWrapper.classList.remove('dropdown_expanded');
+        }
+    });
+
+    // click ESC for open/close dropdown
+    dropdownWrapper.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            dropdownWrapper.classList.remove('dropdown_expanded');
+        }
     });
 });

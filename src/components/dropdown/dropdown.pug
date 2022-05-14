@@ -1,26 +1,67 @@
-.dropdown
-    button.dropdown__button
-        .button-text Сколько гостей
-        img(src=require('./img/expand_more.svg'))
-    ul.dropdown__list(id='count')
-        li.dropdown__list-item
-            .list-item__text Взрослые
-            .list-item__buttons
-                button.btn-minus.disabled -
-                span.count(id='span-1') 0
-                button.btn-plus +
-        li.dropdown__list-item
-            .list-item__text Дети
-            .list-item__buttons 
-                button.btn-minus.disabled -
-                span.count(id='span-2') 0
-                button.btn-plus +
-        li.dropdown__list-item
-            .list-item__text Младенцы
-            .list-item__buttons 
-                button.btn-minus.disabled -
-                span.count(id='span-3') 0
-                button.btn-plus +
-        li.dropdown__list-item 
-            button.list-item__clear.hidden очистить
-            button.list-item__apply применить
+include ./counter/counter
+include ../text-field/text-field
+include ../button/button
+
+mixin dropdown(dropdown)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+
+        const {
+            label,
+            name,
+            placeholder,
+            title,
+            ariaLabel,
+            disabled=false,
+            required=false,
+            expanded=false,
+            autoApply=false,
+            counterList
+        } = dropdown;
+
+    div(class = expanded ? 'dropdown dropdown_expanded js-dropdown' : 'dropdown js-dropdown', data-auto-apply = autoApply)
+        +text-field({
+            label,
+            name,
+            placeholder,
+            disabled,
+            required,
+            title,
+            ariaLabel,
+            type: 'button',
+            ariaExpanded: `${expanded}`,
+            ariaControls: `counter-list-${id}`,
+            controlClass: 'js-dropdown__text-field',
+            input: {
+                activeClass: 'dropdown__button',
+                controlClass: 'js-dropdown__button'
+            },
+            icon: {
+                icon: '_icon-expand_more',
+                activeClass: 'dropdown__icon'
+            }
+        })
+        .dropdown__viewport 
+            .dropdown__container.js-dropdown__container 
+                ul.dropdown__counters-list(id = `counters-list-${id}`)
+                    each item in counterList
+                        li.dropdown__counters-list-item
+                            +counter(item)
+
+                if !autoApply
+                    .dropdown__control-panel 
+                        +button({
+                            type: 'button',
+                            label: 'Очистить',
+                            link: true,
+                            color: 'purple',
+                            controlClass: 'js-dropdown__clear-button'
+                        })
+                        +button({
+                            type: 'button',
+                            label: 'Применить',
+                            link: true,
+                            color: 'purple',
+                            controlClass: 'js-dropdown__apply-button'
+                        })
