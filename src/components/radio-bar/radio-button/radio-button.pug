@@ -9,11 +9,5 @@ mixin radio-button(radioButton)
         } = radioButton;
         
     label.radio-button
-        input.radio-button__input(
-            type = 'radio' 
-            name = name 
-            value = value
-            checked = checked ? true : false
-            disabled = disabled ? true : false
-        )
+        input.radio-button__input(type = 'radio', name = name, value = value, checked = checked ? true : false, disabled = disabled ? true : false)
         span.radio-button__label #{label}
