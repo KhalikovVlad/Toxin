@@ -4,7 +4,6 @@ mixin expandable-checkbox-list(expandableCheckboxList)
     -
         const uniqid = require('uniqid');
         const id = uniqid();
-
         const {
             label,
             expanded=false,
@@ -19,10 +18,9 @@ mixin expandable-checkbox-list(expandableCheckboxList)
             title = title 
             disabled = disabled ? true : false
             aria-expanded = `${expanded}`
-            aria-controls = `checkbox-list-${id}`
-        )
+            aria-controls = `checkbox-list-${id}`)
+
             span.expandable-checkbox-list__label #{label}
-            span.expandable-checkbox-list__icon._icon-expand_more(aria-hidden = true)
-        
+            span.expandable-checkbox-list__icon._icon-expand_more(aria-hidden = true)        
         .expandable-checkbox-list__expand-container 
             +checkbox-list(checkboxList, `checkbox-list-${id}`)
