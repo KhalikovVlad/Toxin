@@ -1,0 +1,81 @@
+// counter
+
+.counter {
+
+    height: 30px;
+    display: grid;
+    grid-template-columns: 
+        auto 30px 32px 30px;
+    grid-template-areas: 
+        'label decrement counter increment';
+    align-items: center;
+
+    // counter label
+
+    &__label {
+        grid-area: 'label';
+        font: $h3-font;
+        line-height: 24px;
+        text-transform: uppercase;
+    }
+
+    // counter input
+
+    &__input {
+        grid-area: 'counter';
+        text-align: center;
+        font: $h3-font;
+        line-height: 24px;
+        color: $dark-shade-100per;
+        border-radius: 10px;
+    
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 1px;
+        }
+    }
+
+    // counter control
+
+    &__control {
+        width: 30px; 
+        height: 30px;
+        background: white;
+        border: $dark-shade-border-25per;
+        border-color: $dark-shade-25per;
+        border-radius: 50%;
+        font: $body-font;
+        font-size: 14px;
+        line-height: 24px;
+        color: $dark-shade-50per;
+        cursor: pointer;
+    
+        &:active {
+            border-color: $dark-shade-5per;
+            transition: border .2s;  
+        }
+    
+        &:disabled {
+            border-color: $dark-shade-5per;
+            transition: border .2s; 
+            color: $dark-shade-25per;
+            cursor: default;
+        }
+  
+        &:focus {
+            outline: none;
+        }  
+         
+        &:hover:not(:disabled) {
+            box-shadow: $shadow-hover;
+        }     
+    }
+
+    &__control_decrement {
+        grid-area: 'decrement';
+    }
+
+    &__control_increment {
+        grid-area: 'increment';
+    }
+}

@@ -1,0 +1,45 @@
+mixin counter(counter)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        
+        const {
+            label,
+            ariaLabel,
+            title,
+            name,
+            initValue,
+            maxValue,
+            plural,
+            isBound,
+            boundPlural,
+            boundName
+        } = counter;
+
+    .counter.js-counter
+        p.counter__label(id = `counter-${id}`) #{label}
+        button.counter__control.counter__control_decrement.js-counter__control_decrement(   
+            type = 'button'
+            aria-hidden = 'true'
+            tabindex = '-1'
+        ) -
+        input.counter__input.js-counter__input(
+            name = name 
+            value = initValue
+            title = title
+            role = 'spinbutton'
+            aria-valuemin = '0'
+            aria-valuemax = maxValue 
+            aria-valuenow = initValue
+            aria-labelledby = `counter-${id}`
+            data-plural = plural
+            data-is-bound = isBound
+            data-bound-plural = boundPlural
+            data-bound-name = boundName
+            readonly
+        )
+        button.counter__control.counter__control_increment.js-counter__control_increment(
+            type = 'button'
+            aria-hidden = 'true'
+            tabindex = '-1'
+        ) +
