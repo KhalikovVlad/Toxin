@@ -8,9 +8,9 @@ mixin pie-chart()
         const countList = [ 0, 65, 65, 130 ];
         const sumCount = countList.reduce((sum, item) => sum += item, 0);
 
-    .pie-chart.js-pie-chart(data-counts=countList data-labels=labelList data-colors=colorList)
+    .pie-chart.js-pie-chart(data-counts=countList, data-labels=labelList, data-colors=colorList)
         .pie-chart__container.js-pie-chart__container
-            canvas.pie-chart__canvas.js-pie-chart__canvas(role ='img' aria-labelledby=`pie-chart-label-${id}` id='myChart' width='120px' height='120px')
+            canvas.pie-chart__canvas.js-pie-chart__canvas(role ='img', aria-labelledby=`pie-chart-label-${id}`, id='myChart', width='120px', height='120px')
             p.pie-chart__label(id = `pie-chart-label-${id}`) 
                 span.pie-chart__number #{sumCount}
                 | #{pluralize({'one': 'Голос', 'few': 'Голоса', 'many': 'Голосов'}, sumCount)}

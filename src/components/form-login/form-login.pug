@@ -3,9 +3,9 @@ include ../button/button
 include ../link/link
 
 mixin form-login()
-    form.form-login(name = 'login' method = 'get')
+    form.form-login(name = 'login', method = 'get')
         h2.form-login__label #{'Войти'}
-        .form-login__fieldset(role = 'group' aria-label = 'Данные для входа в сервис')
+        .form-login__fieldset(role = 'group', aria-label = 'Данные для входа в сервис')
             +text-field({
                 name: 'Почта',
                 type: 'email',
