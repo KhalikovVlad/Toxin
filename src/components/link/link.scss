@@ -60,7 +60,7 @@
 
     // link filled
 
-    .link-filled {
+    &.link-filled {
         padding: 0px 20px;
         background: $purple-gradient;
         color: white;
@@ -82,7 +82,7 @@
 
     // link with border
 
-    .link-with-border {
+    &.link-with-border {
         padding: 0px 18px;
         border: $purple-border;
         color: $purple;
