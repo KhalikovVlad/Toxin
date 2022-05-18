@@ -1,0 +1,59 @@
+@import '../../components/text-field/text-field.scss';
+@import '../../components/button/button.scss';
+@import '../../components/link/link.scss';
+
+// form login 
+
+.form-login {
+    width: min(100%, 380px);
+    padding: 38px 30px 33px 28px;
+    display: grid;
+    row-gap: 20px;
+    background-color: white;
+    box-shadow: $shadow2;
+    border: $shade-border-12per;
+    border-radius: 4px; 
+
+    // form login label
+
+    &__label {
+        font: $h1-font;
+        color: $dark-shade-100per;
+    }
+
+    // form login fieldset
+
+    &__fieldset {
+        display: grid;
+        row-gap: 10px;
+    }
+
+    // form login submit button
+
+    &__submit-button {
+        height: 44px;
+    }
+
+    // form login registration
+
+    &__registration {
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    // form login registration text
+
+    &__registration-text {
+        grid-area: text;
+        font: $body-font;
+    }
+
+    // form login registration button
+
+    &__registration-link {
+        width: 99px;
+        height: 44px;
+    }
+}
