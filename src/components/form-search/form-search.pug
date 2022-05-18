@@ -2,7 +2,7 @@ include ../dropdown/dropdown
 include ../date-dropdown/date-dropdown
 include ../button/button
 
-mixin form-search(formSearch)
+mixin form-search()
     form.form-search(name = 'search', method = 'get', action = './search-room.html', autocomplete = 'off')
         h2.form-search__label #{'Найдём номера под ваши пожелания'}
         +date-dropdown({

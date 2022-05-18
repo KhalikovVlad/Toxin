@@ -1,6 +1,7 @@
 mixin button(button)
     -
         const {
+            href,
             label,
             type,
             title,
@@ -21,7 +22,7 @@ mixin button(button)
         classes = color ? `${classes} button_color_${color}` : classes;
         classes = icon ? `${classes} button_with_icon` : classes;
 
-    button(class = classes, type = type, title = title, disabled = disabled ? true : false)
+    button(class = classes, href = href, type = type, title = title, disabled = disabled ? true : false)
         span.button__label #{label}       
         if icon 
             span.button__icon(aria-hidden = 'true', class = `${icon}`)
