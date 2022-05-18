@@ -150,9 +150,9 @@ class DateDropdown {
 
     setApplyMode = () => this.autoApply ? this.setAutoApply() : this.setManualApply();
 
-    setExpanderDropdownClick() {
+    setExpanderClicks() {
         const dateDropdown = this.root;
-
+            // click on dropdown for open/close dropdown-list
         this.root.querySelectorAll('.js-date-dropdown__button').forEach(function (buttons){
             dateDropdown.addEventListener('click', function (e) {
                 if (e.target === buttons) {
@@ -160,21 +160,20 @@ class DateDropdown {
                 }
             });
         });
-
-    }
-
-    setExpanderDocumentClick() {
-        const dateDropdown = this.root;
-
+            // click on other place for close dropdown-list
         document.addEventListener('click', (e) => {
             const click = e.composedPath().includes(dateDropdown);
             if (!click) {
                 dateDropdown.classList.remove('date-dropdown_expanded');
             }
         });
+            // click on apply button for close dropdown-list
+        this.isTwo && !this.autoApply || !this.isTwo && !this.autoApply ? this.applyButton.addEventListener('click', function() {
+            dateDropdown.classList.remove('date-dropdown_expanded')
+        }) : '';
 
     }
-
+            // press ESC for close dropdown-list
     setExpanderKeydown() {
         const dateDropdown = this.root;
         dateDropdown.addEventListener('keydown', function (e) {
@@ -184,19 +183,10 @@ class DateDropdown {
         })
     }
 
-    setExpanderApplyButton() {
-        const dateDropdown = this.root;
-        
-        this.isTwo && !this.autoApply || !this.isTwo && !this.autoApply ? this.applyButton.addEventListener('click', function() {
-            dateDropdown.classList.remove('date-dropdown_expanded')
-        }) : '';
-    }
 
     setExpanders() {
-        this.setExpanderDropdownClick();
-        this.setExpanderDocumentClick();
+        this.setExpanderClicks();
         this.setExpanderKeydown();
-        this.setExpanderApplyButton();
     }
 
     init() {
