@@ -1,0 +1,60 @@
+include ../dropdown/dropdown
+include ../date-dropdown/date-dropdown
+include ../button/button
+
+mixin form-search(formSearch)
+    form.form-search(name = 'search', method = 'get', action = './search-room.html', autocomplete = 'off')
+        h2.form-search__label #{'Найдём номера под ваши пожелания'}
+
+        +date-dropdown({
+            isTwo: true,
+            required: true
+        })
+
+        +dropdown({
+            label: 'Гости',
+            name: 'Гости',
+            placeholder: 'Сколько гостей',
+            required: true,    
+            title: 'Количество гостей',
+            counterList: [
+                {
+                    label: 'Взрослые',
+                    title: 'Взрослые',
+                    name: 'Взрослые',
+                    initValue: 0,
+                    maxValue: 99,
+                    plural: {'one': 'взрослый', 'few': 'взрослых', 'many': 'взрослых'},
+                    boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
+                    isBound: true,
+                    boundName: 'Гости'
+                },
+                {
+                    label: 'Дети',
+                    title: 'Дети',
+                    name: 'Дети',
+                    initValue: 0,
+                    maxValue: 99,
+                    plural: {'one': 'ребёнок', 'few': 'ребёнка', 'many': 'детей'},
+                    boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
+                    isBound: true,
+                    boundName: 'Гости'
+                },
+                {
+                    label: 'Младенцы',
+                    title: 'Младенцы',
+                    name: 'Младенцы',
+                    initValue: 0,
+                    maxValue: 99,
+                    plural: {'one': 'младенец', 'few': 'младенца', 'many': 'младенцев'},
+                }
+            ]
+        })
+
+        .form-search__submit-button
+            +button({
+                label: 'Подобрать номер',
+                color: 'purple',
+                fill: true,
+                icon: '_icon-arrow_forward'
+            })

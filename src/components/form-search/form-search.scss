@@ -1,0 +1,30 @@
+@import '../../components/dropdown/dropdown.scss';
+@import '../../components/date-dropdown/date-dropdown.scss';
+@import '../../components/button/button.scss';
+
+// form search
+
+.form-search {
+    width: min(100%, 380px);
+    padding: 38px 28px 30px 28px;
+    display: grid;
+    row-gap: 21px;
+    background-color: white;
+    box-shadow: $shadow2;
+    border: $shade-border-12per;
+    border-radius: 4px; 
+
+    // form search label
+
+    &__label {
+        font: $h1-font;
+        color: $dark-shade-100per;
+    }
+
+    // form search submit button
+
+    &__submit-button {
+        margin-top: 10px;
+        height: 44px;
+    }
+}
