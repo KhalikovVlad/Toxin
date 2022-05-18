@@ -1,21 +1,25 @@
-import '../../components/dropdown/counter/counter.js';
-import { setPlaceholder, setTitle, setValue } from  '../../components/text-field/text-field.js';
+import { TextField } from '../../components/text-field/text-field.js';
+import { Counter } from '../../components/dropdown/counter/counter.js';
 
 const normalizeStr = require('../../globals/helpers/normalizeStr.js');
 const pluralize = require('../../globals/helpers/pluralize.js');
 
-document.querySelectorAll('.js-dropdown').forEach(function (dropdownWrapper) {    
-    var textField = dropdownWrapper.querySelector('.js-dropdown__text-field');
-    const button = dropdownWrapper.querySelector('.js-dropdown__button');
-    const container = dropdownWrapper.querySelector('.js-dropdown__container');
-    const counters = container.querySelectorAll('.js-counter');
-    const autoApply = dropdownWrapper.hasAttribute('data-auto-apply');
-    const applyButton = container.querySelector('.js-dropdown__apply-button');
-    const clearButton = container.querySelector('.js-dropdown__clear-button');
-    const countersData = {};
+class Dropdown {
+    constructor(node) {
+        this.root = node;
+        this.textField = this.root.querySelector('.js-dropdown__text-field');
+        this.button = this.root.querySelector('.js-dropdown__button')
+        this.container = this.root.querySelector('.js-dropdown__container')
+        this.counters = this.root.querySelectorAll('.js-counter');
+        this.inputs = this.root.querySelectorAll('.js-counter__input');
+        this.autoApply = this.root.hasAttribute('data-auto-apply');
+        this.countersData = {};
 
-    function setCounterChangeEventListeners() {
-        counters.forEach(counter => counter.addEventListener('counter-changed', (e) => {
+        this.init();
+    };
+
+    setCounterChangeEventListeners() {
+        this.counters.forEach(counter => counter.addEventListener('counter-changed', (e) => {
             const name = e.detail.name;
             const value = e.detail.value;
             const plural = e.detail.plural;
@@ -24,19 +28,19 @@ document.querySelectorAll('.js-dropdown').forEach(function (dropdownWrapper) {
             const boundName = e.detail.boundName;
 
             if (isBound) {
-                if (!countersData[boundName])
-                    countersData[boundName] = {
+                if (!this.countersData[boundName])
+                    this.countersData[boundName] = {
                         name: boundName,
                         isBound: true,
                         plural: boundplural,
                         originData: {}
                     }
-                countersData[boundName].originData[name] = { name };
-                countersData[boundName].originData[name].plural = plural;
-                countersData[boundName].originData[name].value = value;
-                countersData[boundName].value = Object.values(countersData[boundName].originData).reduce((sumValue, data) => sumValue + data.value, 0);
+                this.countersData[boundName].originData[name] = { name };
+                this.countersData[boundName].originData[name].plural = plural;
+                this.countersData[boundName].originData[name].value = value;
+                this.countersData[boundName].value = Object.values(this.countersData[boundName].originData).reduce((sumValue, data) => sumValue + data.value, 0);
             } else {
-                countersData[name] = {
+                this.countersData[name] = {
                     name: name,
                     plural: plural,
                     value: value,
@@ -44,17 +48,23 @@ document.querySelectorAll('.js-dropdown').forEach(function (dropdownWrapper) {
                 }
             }
         })); 
-    };
-    
+    }
 
+    getInputSizeInChar() {
+        const style = getComputedStyle(this.textField);
+        const inputWidth = parseInt(style.width) - 35;
+        const inputSizeInChar = Math.floor(inputWidth * 0.125);
 
-    const placehodlerStringMaker = (str, item) => (item.value !== 0) ? `${str} ${item.value} ${pluralize(item.plural, item.value)},` : `${str}`;
-    const jsonObjStringMaker = (str, item) => (item.value !== 0) ? `${str} "${item.name}": "${item.value}",` : `${str}`;
+        return inputSizeInChar;
+    }
 
-    function getStringFromCounters(counters, stringMaker, displayOrigin) {
+    placehodlerStringMaker = (str, item) => (item.value !== 0) ? `${str} ${item.value} ${pluralize(item.plural, item.value)},` : `${str}`;
+    jsonObjStringMaker = (str, item) => (item.value !== 0) ? `${str} "${item.name}": "${item.value}",` : `${str}`;
+
+    getStringFromCounters(counters, stringMaker, displayOrigin) {
         const str = Object.values(counters).reduce((str, counter) => {
                 if (counter.isBound && displayOrigin) {
-                    return `${str} ${getStringFromCounters(counter.originData, stringMaker, displayOrigin)},`;
+                    return `${str} ${this.getStringFromCounters(counter.originData, stringMaker, displayOrigin)},`;
                 } else {
                     return stringMaker(str, counter);
                 }
@@ -62,99 +72,126 @@ document.querySelectorAll('.js-dropdown').forEach(function (dropdownWrapper) {
             .slice(1, -1);
 
         return str;
-    };
+    }
 
-    function setTextFieldPlaceholder() {
-        const placeholder = normalizeStr(getStringFromCounters(countersData, placehodlerStringMaker, false));
+    setTextFieldPlaceholder() {
+        const placeholder = normalizeStr(this.getStringFromCounters(this.countersData, this.placehodlerStringMaker, false), this.getInputSizeInChar());
 
-        textField = setPlaceholder(placeholder);
-    };
+        new TextField(this.textField).setPlaceholder(placeholder);
+    }
 
-    function setTextFieldTitle() {
-        const title = getStringFromCounters(countersData, placehodlerStringMaker, true);
+    setTextFieldTitle() {
+        const title = this.getStringFromCounters(this.countersData, this.placehodlerStringMaker, true);
 
-        textField = setTitle(title);
-    };
+        new TextField(this.textField).setTitle(title);
+    }
 
-    function setTextFieldValue() {
-        const value = getStringFromCounters(countersData, jsonObjStringMaker, true);
+    setTextFieldValue() {
+        const value = this.getStringFromCounters(this.countersData, this.jsonObjStringMaker, true);
 
-        textField = setValue(value ? `{${value}}` : '');
-    };
+        new TextField(this.textField).setValue(value ? `{${value}}` : '');
+    }
 
-    function updateTextField() {
-        setTextFieldPlaceholder();
-        setTextFieldValue();
-        setTextFieldTitle();
-    };
+    updateTextField() {
+        this.setTextFieldPlaceholder();
+        this.setTextFieldValue();
+        this.setTextFieldTitle();
+    }
 
-    const setClearButtonDisabledState = () => {
-        const counters = Object.values(countersData);
+    setClearButtonDisabledState = () => {
+        const counters = Object.values(this.countersData);
         const isDisabled = counters.reduce((acc, counter) => { 
             if (counter.value) { acc = false; }
 
             return acc;
         }, true);
 
-        clearButton.disabled = isDisabled;
-    };
-    
-    const handleManualApply = (e) => {
-        if (e.target === applyButton) { 
-            updateTextField(); 
-            dropdownWrapper.classList.remove('dropdown_expanded');
+        this.clearButton.disabled = isDisabled;
+    }
+
+    handleManualApply = (e) => {
+        if (e.target === this.applyButton) { 
+            
+            this.updateTextField(); 
+            this.root.classList.remove('dropdown_expanded');
+        };
+
+        if (e.target === this.clearButton) {
+            this.counters.forEach((counter) => counter.dispatchEvent(new CustomEvent('counter-clear')));
+
+            this.updateTextField();
         }
 
-        if (e.target === clearButton) {
-            counters.forEach((counter) => counter.dispatchEvent(new CustomEvent('counter-clear')));
+        this.setClearButtonDisabledState();
+    }
 
-            updateTextField();
-        }
+    setManualApply() {     
+        this.applyButton = this.root.querySelector('.js-dropdown__apply-button');
+        this.clearButton = this.root.querySelector('.js-dropdown__clear-button');
 
-        setClearButtonDisabledState();
-    };
+        this.applyButton.addEventListener('click', this.handleManualApply);
+        this.clearButton.addEventListener('click', this.handleManualApply);
 
-    function setManualApply() {
-        applyButton.addEventListener('click', handleManualApply);
-        clearButton.addEventListener('click', handleManualApply);
+        this.setClearButtonDisabledState();
+    }
 
-        setClearButtonDisabledState();
-    };
+    setAutoApply() {
+        this.counters.forEach((counter) => counter.addEventListener('counter-changed', (e) => this.updateTextField()));
+    }
 
-    function setAutoApply() {
-        counters.forEach((counter) => counter.addEventListener('counter-changed', (e) => updateTextField()));
-    };
+    setCounters() {
+        this.counters.forEach((counter) => new Counter(counter));
+    }
 
-    function setCounters() {
-        counters.forEach((counter) => counter);
-    };
+    setApplyMode = () => this.autoApply ? this.setAutoApply() : this.setManualApply();
 
-    const setApplyMode = () => autoApply ? setAutoApply() : setManualApply();
+    setExpanderDropdownClick() {
+        const button = this.button;
+        const dropdown = this.root;
 
-    setCounterChangeEventListeners();
-    setCounters();
-    setApplyMode();
-    updateTextField();
+        dropdown.addEventListener('click', function (e) {
+            if (e.target === button) {
+                dropdown.classList.toggle('dropdown_expanded');
+            }
+        });
+    }
 
-    // click on dropdown for open/close dropdown-list
-    dropdownWrapper.addEventListener('click', function (e) {
-        if (e.target === button) {
-            dropdownWrapper.classList.toggle('dropdown_expanded')
-        }
-    });
+    setExpanderDocumentClick() {
+        const dropdown = this.root;
+        document.addEventListener('click', (e) => {
+            const click = e.composedPath().includes(dropdown);
+            if (!click) {
+                dropdown.classList.remove('dropdown_expanded');
+            }
+        });
 
-    // click on other place for close dropdown
-    document.addEventListener('click', (e) => {
-        const click =  e.composedPath().includes(dropdownWrapper);
-        if (!click) {
-            dropdownWrapper.classList.remove('dropdown_expanded');
-        }
-    });
+    }
 
-    // click ESC for open/close dropdown
-    dropdownWrapper.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            dropdownWrapper.classList.remove('dropdown_expanded');
-        }
-    });
-});
+    setExpanderKeydown() {
+        const dropdown = this.root;
+        dropdown.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                dropdown.classList.remove('dropdown_expanded');
+            }
+        })
+    }
+
+    setExpanders() {
+        this.setExpanderDropdownClick();
+        this.setExpanderDocumentClick();
+        this.setExpanderKeydown();
+    }
+
+    init() {
+        this.setCounterChangeEventListeners();
+        this.setCounters();
+        this.setApplyMode();
+        this.updateTextField();
+        this.setExpanders();
+    }
+};
+
+const dropdowns = document.querySelectorAll('.js-dropdown');
+if (dropdowns.length > 0) {
+    dropdowns.forEach((node) => new Dropdown(node));
+}
