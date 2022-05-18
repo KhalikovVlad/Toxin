@@ -1,0 +1,50 @@
+// tooltip
+
+.tooltip {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: $dark-shade-border-25per;
+    border-radius: 50%;
+    font: $body-font;
+    color: $dark-shade-25per;
+    cursor: pointer;
+    
+    &:focus {
+        outline: $custom-outline;
+        outline-offset: 2px;
+    }
+
+    &:hover, 
+    &:focus {
+        & .tooltip__description {
+            z-index: 1;
+            visibility: visible;
+            opacity: 1;
+            transition: opacity step-end 0.5s;
+        }
+    }
+
+    // description
+
+    & .tooltip__description {
+        z-index: -1;
+        max-width: 200px;
+        position: absolute;
+        right: -75px;
+        visibility: hidden;
+        width: max-content;
+        display: block;
+        opacity: 0;
+        padding: 47px;
+        font: lighter 12px Arial;
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+        border-radius: 5%;
+        pointer-events: none;
+    }
+}

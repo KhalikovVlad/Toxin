@@ -1,0 +1,7 @@
+mixin tooltip(description)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+
+    span.tooltip(role = 'tooltip', aria-label = 'Дополнительная информация', aria-description = `tooltip-description-${id}`) i 
+        span.tooltip__description(id = `tooltip-description-${id}`) #{description}
