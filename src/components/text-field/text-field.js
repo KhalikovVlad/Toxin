@@ -1,52 +1,62 @@
 import Cleave from 'cleave.js';
 
-const textField = document.querySelector('.js-text-field');
-const textFieldInput = textField.querySelector('.js-text-field__input');
-const textFieldHiddenInput = textField.querySelector('.js-text-field__hidden-input');
-const textFieldPlaceHolder = textFieldInput.dataset.placeholder;
-const textFieldTitle = textFieldInput.dataset.title;
-const dateMask = textFieldInput.hasAttribute('data-date-mask');
+export class TextField {
+    constructor(node) {
+        this.root = node;
+        this.input = this.root.querySelector('.js-text-field__input');
+        this.hiddenInput = this.root.querySelector('.js-text-field__hidden-input');
+        this.placeholder = this.input.dataset.placeholder;
+        this.dateMask = this.input.hasAttribute('data-date-mask');
+        this.title = this.input.dataset.title;
 
+        this.init();
+    }
 
-function relocateHiddenInputFocus() {
-    textFieldHiddenInput.addEventListener('focus', (e) => textFieldInput.focus());
-};
+    relocateHiddenInputFocus() {
+        this.hiddenInput.addEventListener('focus', (e) => this.input.focus());
+    }
 
-function setDateMask() {
-    new Cleave(textFieldInput, {
-        date: true,
-        dateMin: '1900-01-01',
-        dateMax: '2022-12-31',
-        datePattern: ["d", "m", "Y"],
-        delimiter: '.'
-    });
-};
+    setDateMask() {
+        new Cleave(this.input, {
+            date: true,
+            dateMin: '1900-01-01',
+            dateMax: '2022-12-31',
+            datePattern: ["d", "m", "Y"],
+            delimiter: '.'
+        });
+    }
 
-if (dateMask) {
-    setDateMask();
-};
-if (textFieldHiddenInput) {
-    relocateHiddenInputFocus();
-};
+    init() {
+        if (this.dateMask) {
+            this.setDateMask();
+        };
+        if (this.hiddenInput) {
+            this.relocateHiddenInputFocus();
+        };
+    }
 
-function setPlaceholder(placeholder) {
-    if (textFieldInput.type === 'button') {
-        textFieldInput.value = placeholder ? placeholder : textFieldPlaceHolder;
-    } else {
-        placeholder ? textFieldInput.setAttribute('placeholder', placeholder) : textFieldInput.setAttribute('placeholder', textFieldPlaceHolder);
-    };
-};
+    setPlaceholder(placeholder) {
+        if (this.input.type === 'button') {
+            this.input.value = placeholder ? placeholder : this.placeholder;
+        } else {
+            placeholder ? this.input.setAttribute('placeholder', placeholder) : this.input.setAttribute('placeholder', this.placeholder);
+        };
+    }
 
-function setTitle(title) {
-    title ? textFieldInput.setAttribute('title', title) : textFieldInput.setAttribute('title', textFieldTitle);
-};
+    setTitle(title) {
+        title ? this.input.setAttribute('title', title) : this.input.setAttribute('title', this.title);
+    }
 
-function setValue(value) {
-    if (textFieldInput.getAttribute('type') === 'button') {
-        textFieldHiddenInput.value = value ? value : '';
-    } else {
-        textFieldInput.value = value ? value : '';
-    };
-};
+    setValue(value) {
+        if (this.input.getAttribute('type') === 'button') {
+            this.hiddenInput.value = value ? value : '';
+        } else {
+            this.input.value = value ? value : '';
+        };
+    }
+}
 
-export {setPlaceholder, setTitle, setValue};
+const textFields = document.querySelectorAll('.js-text-field');
+if (textFields.length > 0) {
+    textFields.forEach((node) => new TextField(node));
+}
