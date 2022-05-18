@@ -1,0 +1,86 @@
+include ../text-field/text-field
+include ../radio-bar/radio-bar
+include ../toggle/toggle
+include ../button/button
+include ../link/link
+
+mixin form-registration()
+    form.form-registration(name = 'registration', method = 'get', autocomplete = 'off')
+        h2.form-registration__label #{'Регистрация аккаунта'}   
+        .form-registration__fieldset(role = 'group', aria-label = 'Персональные данные')
+            +text-field({
+                name: 'Имя',
+                placeholder: 'Имя',
+                required: true,
+                title: 'Введите имя',
+                ariaLabel: 'Имя'
+            })
+            +text-field({
+                name: 'Фамилия',
+                placeholder: 'Фамилия',
+                required: true,
+                title: 'Введите фамилию',
+                ariaLabel: 'Фамилия'
+            })
+            +radio-bar({
+                ariaLabel: 'Выбор пола',
+                name: 'Пол',
+                radioButtons: [
+                    {
+                        label: 'Мужчина',
+                        value: 'Мужчина',
+                        checked: true
+                    },
+                    {
+                        label: 'Женщина',
+                        value: 'Женщина'
+                    }
+                ]
+            })
+        +text-field({
+            label: 'Дата рождения',
+            name: 'Дата рождения',
+            placeholder: 'ДД.ММ.ГГГГ',
+            dateMask: true,
+            required: true,
+            title: 'Введите дату рождения'
+        })      
+        .form-registration__fieldset(role = 'group', aria-label = 'Данные для входа в сервис')
+            +text-field({
+                label: 'Данные для входа в сервис',
+                name: 'Почта',
+                type: 'email',
+                placeholder: 'Email',
+                required: true,
+                title: 'Введите адрес почты',
+                ariaLabel: 'Почта'
+            })
+            +text-field({
+                name: 'Пароль',
+                type: 'password',
+                placeholder: 'Пароль',
+                required: true,
+                title: 'Введите пароль',
+                ariaLabel: 'Пароль'
+            })
+            +toggle({
+                name: 'Получать спецпредложения',
+                label: 'Получать спецпредложения'
+            })
+        .form-registration__submit-button
+            +button({
+                label: 'Перейти к оплате',
+                color: 'purple',
+                fill: true,
+                icon: '_icon-arrow_forward'
+            })
+        .form-registration__login
+            p.form-registration__login-text #{'Уже есть аккаунт на'} Toxin
+            .form-registration__login-link
+                +link({
+                    label: 'Войти',
+                    href: './login-page.html',
+                    title: 'Страница авторизации',
+                    button: true,
+                    border: true
+                })
