@@ -1,0 +1,106 @@
+include ./datepicker/datepicker
+include ../text-field/text-field
+include ../button/button
+
+mixin date-dropdown(dateDropdown)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        const {
+            isTwo=false,
+            expanded=false,
+            autoApply=false,
+            required=false,
+            disabled=false,
+            initValue,
+        } = dateDropdown;
+
+    div(
+        class = controlClass ? `date-dropdown js-date-dropdown ${controlClass}` : 'date-dropdown js-date-dropdown'
+        data-is-two = isTwo
+        data-auto-apply = autoApply)
+
+        if isTwo 
+            +text-field({
+                disabled,
+                required,
+                label: 'Прибытие',
+                controlClass: 'js-date-dropdown__text-field',
+                type: 'button',
+                name: 'arrival',
+                placeholder: 'ДД.ММ.ГГГГ',
+                title: 'Дата прибытия',
+                ariaExpanded: `${expanded}`,
+                ariaControls: `datepicker-${id}`,
+                input: {
+                    activeClass: 'date-dropdown__button',
+                    controlClass: 'js-date-dropdown__button',
+                },
+                icon: {
+                    icon: '_icon-expand_more',
+                    activeClass: 'date-dropdown__icon'
+                }
+            })
+            +text-field({
+                disabled,
+                required,
+                label: 'Отъезд',
+                controlClass: 'js-date-dropdown__text-field',
+                type: 'button',
+                name: 'departure',
+                placeholder: 'ДД.ММ.ГГГГ',
+                title: 'Дата отъезда',
+                ariaExpanded: `${expanded}`,
+                ariaControls: `datepicker-${id}`,
+                input: {
+                    activeClass: 'date-dropdown__button',
+                    controlClass: 'js-date-dropdown__button'
+                },
+                icon: {
+                    icon: '_icon-expand_more',
+                    activeClass: 'date-dropdown__icon'
+                }
+            })
+
+        else 
+            +text-field({
+                disabled,
+                required,
+                label: 'Время пребывания в отеле',
+                controlClass: 'js-date-dropdown__text-field',
+                type: 'button',
+                name: 'period',
+                placeholder: 'ДД.ММ',
+                title: 'Время пребывания в отеле',
+                ariaExpanded: `${expanded}`,
+                ariaControls: `datepicker-${id}`,
+                input: {
+                    activeClass: 'date-dropdown__button',
+                    controlClass: 'js-date-dropdown__button'
+                },
+                icon: {
+                    icon: '_icon-expand_more',
+                    activeClass: 'date-dropdown__icon'
+                }
+            })
+
+        .date-dropdown__viewport 
+            section.date-dropdown__container.js-date-dropdown__container(id = `datepicker-${id}`)
+                +datepicker(initValue)
+
+                if (!autoApply)
+                    .date-dropdown__control-panel 
+                        +button({
+                            type: 'button',
+                            label: 'Очистить',
+                            link: true,
+                            color: 'purple',
+                            controlClass: 'js-date-dropdown__clear-button'
+                        })
+                        +button({
+                            type: 'button',
+                            label: 'Применить',
+                            link: true,
+                            color: 'purple',
+                            controlClass: 'js-date-dropdown__apply-button'
+                        })
