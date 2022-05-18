@@ -1,0 +1,203 @@
+// datepicker
+
+.datepicker {
+
+    // datepicker calendar
+
+    &__calendar {
+        display: grid;
+        width: 100%;
+
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 2px;
+        }
+    }
+
+    // datepicker header
+
+    &__header {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+     
+        & .datepicker__prev, 
+        & .datepicker__next {
+            font: $icon-font;
+            font-size: 24px;
+            color: $purple;
+            cursor: pointer;
+     
+            &.is-disabled {
+                cursor: default;
+                opacity: 0.5;
+                pointer-events: none;
+            }
+     
+            &:focus {
+                outline: $custom-outline;
+                outline-offset: 2px;
+            }
+        }
+     
+        & .datepicker__title {
+            font: $h2-font;
+            color: $dark-shade-100per;
+        }
+    }
+
+    // datepicker row
+
+    &__row {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+
+    // datepicker week
+
+    &__weekday {
+        padding-top: calc(50% - 15px/2);
+        padding-bottom: calc(50% - 15px/2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     
+        & abbr {  
+            font: $h3-font;
+            color: $purple;
+            text-decoration: none;
+            cursor: help;
+        }
+    }
+
+    // datepicker day
+
+    &__day {
+        position: relative;
+        padding-top: calc(50% - 15px/2);
+        padding-bottom: calc(50% - 15px/2);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font: $h3-font; 
+        font-weight: normal;
+        color: $dark-shade-50per;
+        cursor: pointer;
+     
+        &:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+     
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 2px;
+        }
+     
+        &.is-disabled {
+            cursor: default;
+            pointer-events: none;
+            color: $dark-shade-25per;
+        }
+     
+        &.is-otherMonth {
+            color: $dark-shade-25per;
+        }
+     
+        &.is-today {
+            color: white;
+            font-weight: bold;
+     
+            &:after {  
+                background: $green-gradient;
+                transform: scale(1);
+            }
+        }
+     
+        &.is-startRange, 
+        &.is-endRange{
+            color: white;
+            font-weight: bold;
+     
+            &:after {
+                background: $purple-gradient;
+                transform: scale(1);
+            }
+        }
+     
+        &.is-startRange:not(.is-endRange, :last-child):before {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background-color: $purple-25per;
+        }
+     
+        &.is-endRange:not(.is-startRange, :first-child):before {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            right: 50%;
+            width: 50%;
+            height: 100%;
+            background-color: $purple-25per;
+        }
+     
+        &.is-selected:not(.is-startRange, .is-endRange) {
+            position: relative;
+     
+            &:first-child {
+                &:before {
+                    border-top-left-radius: 50%;
+                    border-bottom-left-radius: 50%;
+                }
+            }
+     
+            &:last-child {
+                &:before {
+                    border-top-right-radius: 50%;
+                    border-bottom-right-radius: 50%;
+                }
+            }
+     
+            &:before {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: $purple-25per;
+            }
+        }
+     
+        &:not(.is-endRange, .is-startRange, .is-today, .is-disabled){
+            &:hover, 
+            &:focus {
+                color: white;
+                font-weight: bold;
+     
+                &:after {
+                    background-color: $purple-50per;
+                    transform: scale(1);
+                    transition: transform .3s;
+                }
+            }
+        }
+     
+        &.is-startRange, 
+        &.is-endRange, 
+        &.is-today {
+            &:hover:after, &:focus:after {
+                box-shadow: $shadow-hover;
+            }
+        }
+     }
+}
