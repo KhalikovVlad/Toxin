@@ -145,28 +145,24 @@ class Dropdown {
 
     setApplyMode = () => this.autoApply ? this.setAutoApply() : this.setManualApply();
 
-    setExpanderDropdownClick() {
+    setExpanderClicks() {
         const button = this.button;
         const dropdown = this.root;
-
+        // click on dropdown for open/close dropdown-list
         dropdown.addEventListener('click', function (e) {
             if (e.target === button) {
                 dropdown.classList.toggle('dropdown_expanded');
             }
         });
-    }
-
-    setExpanderDocumentClick() {
-        const dropdown = this.root;
+        // click on other place for close dropdown-list
         document.addEventListener('click', (e) => {
             const click = e.composedPath().includes(dropdown);
             if (!click) {
                 dropdown.classList.remove('dropdown_expanded');
             }
         });
-
     }
-
+        // press ESC for close dropdown-list
     setExpanderKeydown() {
         const dropdown = this.root;
         dropdown.addEventListener('keydown', function (e) {
@@ -177,8 +173,7 @@ class Dropdown {
     }
 
     setExpanders() {
-        this.setExpanderDropdownClick();
-        this.setExpanderDocumentClick();
+        this.setExpanderClicks();
         this.setExpanderKeydown();
     }
 
