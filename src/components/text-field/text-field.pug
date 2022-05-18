@@ -59,24 +59,20 @@ mixin text-field(textField)
                 data-placeholder = (type === 'button') ? placeholder : false
                 data-title = (type === 'button') ? title : false
             )
-
             if !button
                 if icon 
                     span(class = icon.activeClass ? `text-field__icon ${icon.activeClass} ${icon.icon}` : `text-field__icon ${icon.icon}`, aria-hidden = 'true')
-
         if type === 'button' && name 
             input.text-field__hidden-input.js-text-field__hidden-input(
                 name = name 
                 required = required ? true : false 
                 disabled = disabled ? true : false 
                 tabindex = '-1'
-                aria-hidden = 'true')
-        
+                aria-hidden = 'true'
+                )      
         if button 
             button.text-field__button(type ='submit', aria-label = button.ariaLabel, title = button.title)
-
                 if icon 
-                    span(class = icon.activeClass ? `text-field__icon ${icon.activeClass} ${icon.icon}` : `text-field__icon ${icon.icon}`, aria-hidden = 'true')
-                    
+                    span(class = icon.activeClass ? `text-field__icon ${icon.activeClass} ${icon.icon}` : `text-field__icon ${icon.icon}`, aria-hidden = 'true')                   
                 else if block 
                     block

@@ -5,12 +5,10 @@ include ../button/button
 mixin form-search(formSearch)
     form.form-search(name = 'search', method = 'get', action = './search-room.html', autocomplete = 'off')
         h2.form-search__label #{'Найдём номера под ваши пожелания'}
-
         +date-dropdown({
             isTwo: true,
             required: true
         })
-
         +dropdown({
             label: 'Гости',
             name: 'Гости',
@@ -50,7 +48,6 @@ mixin form-search(formSearch)
                 }
             ]
         })
-
         .form-search__submit-button
             +button({
                 label: 'Подобрать номер',

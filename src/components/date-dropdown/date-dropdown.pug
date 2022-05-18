@@ -18,8 +18,8 @@ mixin date-dropdown(dateDropdown)
     div(
         class = controlClass ? `date-dropdown js-date-dropdown ${controlClass}` : 'date-dropdown js-date-dropdown'
         data-is-two = isTwo
-        data-auto-apply = autoApply)
-
+        data-auto-apply = autoApply
+        )
         if isTwo 
             +text-field({
                 disabled,
@@ -61,7 +61,6 @@ mixin date-dropdown(dateDropdown)
                     activeClass: 'date-dropdown__icon'
                 }
             })
-
         else 
             +text-field({
                 disabled,
@@ -83,11 +82,9 @@ mixin date-dropdown(dateDropdown)
                     activeClass: 'date-dropdown__icon'
                 }
             })
-
         .date-dropdown__viewport 
             section.date-dropdown__container.js-date-dropdown__container(id = `datepicker-${id}`)
                 +datepicker(initValue)
-
                 if (!autoApply)
                     .date-dropdown__control-panel 
                         +button({

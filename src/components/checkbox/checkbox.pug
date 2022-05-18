@@ -18,11 +18,10 @@ mixin checkbox(checkbox)
             checked = checked ? true : false 
             disabled = disabled ? true : false
             aria-labelledby = description ? `checkbox-label-${id}` : false
-            aria-describedby = description ? `checkbox-description-${id}` : false)
-
+            aria-describedby = description ? `checkbox-description-${id}` : false
+            )
         if description 
             b.checkbox__label(id = `checkbox-label-${id}`) !{label}
             p.checkbox__description(id = `checkbox-description-${id}`) !{description}
-
         else 
             span.checkbox__label !{label}

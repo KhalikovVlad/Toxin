@@ -8,7 +8,7 @@ mixin like(like)
     button(
         class = active ? 'like like_active js-like' : 'like js-like'
         aria-label = `${active ? 'Снять оценку' : 'Оценить'}`
-        title = `${active ? 'Снять оценку' : 'Оценить'}`)
-        
+        title = `${active ? 'Снять оценку' : 'Оценить'}`
+        )      
         span.like__icon.js-like__icon(aria-hidden = 'true', class = active ? '_icon-favorite' : '_icon-favorite_border') 
         span.like__count.js-like__count(aria-hidden = 'true') #{count}

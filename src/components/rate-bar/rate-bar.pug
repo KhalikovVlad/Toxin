@@ -13,14 +13,13 @@ mixin rate-bar(rateBar)
     fieldset.rating
         .rating__rate-bar(
             role = 'radiogroup',
-            aria-label = `Рейтинг: ${rating} из ${count} ${pluralize({'one': 'звезды', 'few': 'звёзд', 'many': 'звёзд'}, count)}`)
-
+            aria-label = `Рейтинг: ${rating} из ${count} ${pluralize({'one': 'звезды', 'few': 'звёзд', 'many': 'звёзд'}, count)}`
+            )
             - let index = 0;
             while index < count
                 -
                     let checked = false;
-                    index++;
-            
+                    index++;          
                     if (index === rating) { checked = true; }
                 +rate-button({
                     name, 

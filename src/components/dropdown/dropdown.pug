@@ -18,7 +18,6 @@ mixin dropdown(dropdown)
             autoApply=false,
             counterList
         } = dropdown;
-
     div(class = expanded ? 'dropdown dropdown_expanded js-dropdown' : 'dropdown js-dropdown', data-auto-apply = autoApply)
         +text-field({
             label,
@@ -47,7 +46,6 @@ mixin dropdown(dropdown)
                     each item in counterList
                         li.dropdown__counters-list-item
                             +counter(item)
-
                 if !autoApply
                     .dropdown__control-panel 
                         +button({

@@ -18,8 +18,8 @@ mixin expandable-checkbox-list(expandableCheckboxList)
             title = title 
             disabled = disabled ? true : false
             aria-expanded = `${expanded}`
-            aria-controls = `checkbox-list-${id}`)
-
+            aria-controls = `checkbox-list-${id}`
+            )
             span.expandable-checkbox-list__label #{label}
             span.expandable-checkbox-list__icon._icon-expand_more(aria-hidden = true)        
         .expandable-checkbox-list__expand-container 
