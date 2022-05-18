@@ -1,0 +1,147 @@
+@import '../../components/form-booking/tooltip/tooltip.scss';
+@import '../../components/dropdown/dropdown.scss';
+@import '../../components/date-dropdown/date-dropdown.scss';
+@import '../../components/button/button.scss';
+
+// form booking 
+
+.form-booking {
+    width: min(100%, 380px);
+    padding: 45px 28px 30px 28px;
+    display: grid;
+    row-gap: 22px;
+    background-color: white;
+    box-shadow: $shadow2;
+    border: $shade-border-12per;
+    border-radius: 4px; 
+
+    // form booking heading
+
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font: $body-font;
+    
+        & .form-booking__number {
+            font: $h1-font;
+            line-height: 17px;
+    
+            & small {
+                font-size: 14px;
+            }
+    
+            & .form-booking__category {
+                font: $h3-font;
+                font-weight: bold;
+                line-height: 15px;
+                text-transform: uppercase;
+                color: $purple;
+            }
+        }
+    
+        & .form-booking__rent {
+            display: inline-flex;
+            align-items: flex-end;
+            font-weight: bold;
+            line-height: 14px;
+            color: $dark-shade-50per;
+    
+            & .form-booking__term {
+                font-weight: normal;
+                line-height: 12px;
+                color: $dark-shade-50per;
+            }
+        }
+    }
+
+    // form booking price section
+
+    &__price-section {
+        & .form-booking__label {
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+        }
+    
+        & .form-booking__price-list {
+            display: grid;
+            row-gap: 10px;
+        
+            & .form-booking__price-item {
+                display: flex;
+                min-height: 24;
+                justify-content: space-between;
+                column-gap: 10px;
+        
+                & .form-booking__description {
+                    width: min(100%, 245px);
+                    display: flex;
+                    justify-content: space-between;
+                    column-gap: 5px;
+    
+                    & .form-booking__text {
+                        width: 217px;
+                        font: $body-font;
+                        line-height: 18px;
+                        color: $dark-shade-75per;
+    
+                        & .form-booking__discount {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+                
+                & .form-booking__summary,
+                & .form-booking__service,
+                & .form-booking__addition {
+                    min-width: 57px;
+                    display: inline-flex;
+                    justify-content: flex-end;
+                    border: none;
+                    font: $body-font;
+                    line-height: 18px;
+                    color: $dark-shade-75per;
+                    white-space: nowrap;
+                }
+            }
+    
+            & .form-booking__total {
+                margin-top: 19px;
+                padding: 0 2px;
+                display: grid;
+                grid-template-columns: max-content 1fr max-content;
+                align-items: bottom;
+                column-gap: 5px;
+    
+                &:before {
+                    content: '';
+                    grid-row: 1;
+                    grid-column: 2;
+                    margin-bottom: 5px;
+                    display: block;
+                    border-bottom: 1px dashed $dark-shade-25per;
+                }
+            
+                & .form-booking__description {
+                    grid-column: 1;
+                    font: $h2-font;
+                    color: $dark-shade-100per;
+                    
+                }
+            
+                & .form-booking__price {
+                    grid-column: 3;
+                    font: $h2-font;
+                    color: $dark-shade-100per;
+                }
+            }
+        }
+    }
+
+    &__submit-button {
+        height: 44px;
+    }
+}

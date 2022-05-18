@@ -1,0 +1,113 @@
+include ./tooltip/tooltip
+include ../dropdown/dropdown
+include ../date-dropdown/date-dropdown
+include ../button/button
+
+mixin form-booking(formBooking)
+    -
+        const currencyFormat = require('../../globals/helpers/currencyFormat.js');
+        const {
+            number,
+            isLux,
+            currency,
+            rent,
+            service,
+            addition,
+            discount,
+            description,
+            dateInitValue,
+            guestsValue
+        } = formBooking;
+
+    form.form-booking.js-form-booking(name = `${number}_номер`, method = 'get', autocomplete = 'off', data-currency = currency)
+        h2.form-booking__heading 
+            span.form-booking__number 
+                small №
+                | #{number}
+                if isLux 
+                    strong.form-booking__category &nbsp;#{'Люкс'}
+            span.form-booking__rent 
+                | #{currencyFormat(currency, rent)}
+                small.form-booking__term &nbsp;#{'в сутки'}
+        +date-dropdown({
+            initValue: dateInitValue,
+            isTwo: true,
+            required: true
+        })
+        +dropdown({
+            label: 'Гости',
+            name:'Гости',
+            placeholder: 'Сколько гостей',
+            required: true,
+            title: 'Количество гостей',
+            counterList: [
+                {
+                    label: 'Взрослые',
+                    title: 'Взрослые',
+                    name: 'Взрослые',
+                    initValue: guestsInitValue,
+                    maxValue: 99,
+                    plural: {'one': 'взрослый', 'few': 'взрослых', 'many': 'взрослых'},
+                    boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
+                    isBound: true,
+                    boundName: 'Гости'
+                },
+                {
+                    label: 'Дети',
+                    title: 'Дети',
+                    name: 'Дети',
+                    initValue: guestsInitValue,
+                    maxValue: 99,
+                    plural: {'one': 'ребёнок', 'few': 'ребёнка', 'many': 'детей'},
+                    boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
+                    isBound: true,
+                    boundName: 'Гости'
+                },
+                {
+                    label: 'Младенцы',
+                    title: 'Младенцы',
+                    name: 'Младенцы',
+                    initValue: guestsInitValue,
+                    maxValue: 99,
+                    plural: {'one': 'младенец', 'few': 'младенца', 'many': 'младенцев'},
+                }
+            ]
+        })
+        section.form-booking__price-section 
+            h3.form-booking__label #{'Прайс-лист'}
+            dl.form-booking__price-list
+                .form-booking__price-item 
+                    dt.form-booking__description 
+                        span.form-booking__text 
+                            span.form-booking__rent.js-form-booking__rent #{currencyFormat(currency, rent)}
+                            |&nbsp;x&nbsp;
+                            span.form-booking__period.js-form-booking__period(data-plural = {'one': 'сутки', 'few': 'суток', 'many': 'суток'})
+                    dd.form-booking__summary.js-form-booking__summary 
+                .form-booking__price-item 
+                    dt.form-booking__description 
+                        span.form-booking__text #{'Сбор за услуги'}
+                            if discount 
+                                | : #{'Скидка'}
+                                span.form-booking__discount.js-form-booking__discount 
+                                    | #{currencyFormat(currency, discount)}
+                        +tooltip(description)
+                    dd.form-booking__service.js-form-booking__service
+                        | #{currencyFormat(currency, service)}
+                .form-booking__price-item 
+                    dt.form-booking__description 
+                        span.form-booking__text #{'Сбор за дополнительные услуги'}
+                        +tooltip(description)
+                    dd.form-booking__addition.js-form-booking__addition 
+                        | #{currencyFormat(currency, addition)}
+                .form-booking__total 
+                    dt.form-booking__description #{'Итого'}
+                    dd.form-booking__price.js-form-booking__price
+        .form-booking__submit-button 
+            +button({
+                label: 'Забронировать',
+                color: 'purple',
+                fill: true,
+                icon: '_icon-arrow_forward'
+            })
+        input.form-booking__input.js-form-booking__input(name = 'Цена', readonly, hidden, aria-hidden = 'true')
+        input(name = 'Валюта', value = currency, readonly, hidden, aria-hidden  = 'true')
