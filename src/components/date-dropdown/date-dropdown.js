@@ -183,7 +183,6 @@ class DateDropdown {
         })
     }
 
-
     setExpanders() {
         this.setExpanderClicks();
         this.setExpanderKeydown();
