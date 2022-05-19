@@ -35,16 +35,18 @@
         max-width: 200px;
         position: absolute;
         right: -75px;
+        top: -50px;
         visibility: hidden;
         width: max-content;
         display: block;
         opacity: 0;
-        padding: 47px;
-        font: lighter 12px Arial;
-        background-color: white;
-        border: 1px solid black;
-        color: black;
-        border-radius: 5%;
+        padding: 20px;
+        font: lighter 14px Arial;
+        font-weight: bold;
+        background: $purple-gradient;
+        border: 1px solid $dark-shade-50per;
+        color: white;
+        border-radius: 10%;
         pointer-events: none;
     }
 }
