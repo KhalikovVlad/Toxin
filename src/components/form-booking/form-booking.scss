@@ -1,3 +1,4 @@
+
 @import '../../components/form-booking/tooltip/tooltip.scss';
 @import '../../components/dropdown/dropdown.scss';
 @import '../../components/date-dropdown/date-dropdown.scss';
@@ -29,6 +30,7 @@
     
             & small {
                 font-size: 14px;
+                margin-right: 5px;
             }
     
             & .form-booking__category {
@@ -37,6 +39,7 @@
                 line-height: 15px;
                 text-transform: uppercase;
                 color: $purple;
+                margin-left: 5px;
             }
         }
     

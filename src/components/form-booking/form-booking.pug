@@ -14,9 +14,8 @@ mixin form-booking(formBooking)
             service,
             addition,
             discount,
-            description,
             dateInitValue,
-            guestsValue
+            guestsInitValue
         } = formBooking;
 
     form.form-booking.js-form-booking(name = `${number}_номер`, method = 'get', autocomplete = 'off', data-currency = currency)
@@ -45,7 +44,7 @@ mixin form-booking(formBooking)
                     label: 'Взрослые',
                     title: 'Взрослые',
                     name: 'Взрослые',
-                    initValue: guestsInitValue,
+                    initValue: guestsInitValue.adults,
                     maxValue: 99,
                     plural: {'one': 'взрослый', 'few': 'взрослых', 'many': 'взрослых'},
                     boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
@@ -56,7 +55,7 @@ mixin form-booking(formBooking)
                     label: 'Дети',
                     title: 'Дети',
                     name: 'Дети',
-                    initValue: guestsInitValue,
+                    initValue: guestsInitValue.kids,
                     maxValue: 99,
                     plural: {'one': 'ребёнок', 'few': 'ребёнка', 'many': 'детей'},
                     boundPlural: {'one': 'гость', 'few': 'гостя', 'many': 'гостей'},
@@ -67,7 +66,7 @@ mixin form-booking(formBooking)
                     label: 'Младенцы',
                     title: 'Младенцы',
                     name: 'Младенцы',
-                    initValue: guestsInitValue,
+                    initValue: guestsInitValue.babies,
                     maxValue: 99,
                     plural: {'one': 'младенец', 'few': 'младенца', 'many': 'младенцев'},
                 }
@@ -81,7 +80,7 @@ mixin form-booking(formBooking)
                         span.form-booking__text 
                             span.form-booking__rent.js-form-booking__rent #{currencyFormat(currency, rent)}
                             |&nbsp;x&nbsp;
-                            span.form-booking__period.js-form-booking__period(data-plural = {'one': 'сутки', 'few': 'суток', 'many': 'суток'})
+                            span.form-booking__period.js-form-booking__period
                     dd.form-booking__summary.js-form-booking__summary 
                 .form-booking__price-item 
                     dt.form-booking__description 
@@ -90,15 +89,15 @@ mixin form-booking(formBooking)
                                 | : #{'Скидка'}
                                 span.form-booking__discount.js-form-booking__discount 
                                     | #{currencyFormat(currency, discount)}
-                        +tooltip(description)
+                        +tooltip(service.tooltip)
                     dd.form-booking__service.js-form-booking__service
-                        | #{currencyFormat(currency, service)}
+                        | #{currencyFormat(currency, service.number)}
                 .form-booking__price-item 
                     dt.form-booking__description 
                         span.form-booking__text #{'Сбор за дополнительные услуги'}
-                        +tooltip(description)
+                        +tooltip(addition.tooltip)
                     dd.form-booking__addition.js-form-booking__addition 
-                        | #{currencyFormat(currency, addition)}
+                        | #{currencyFormat(currency, addition.number)}
                 .form-booking__total 
                     dt.form-booking__description #{'Итого'}
                     dd.form-booking__price.js-form-booking__price

@@ -27,7 +27,7 @@ class FormBooking {
         this.departureTimestamp = dates[1];
         this.rentPeriod = this.departureTimestamp && this.arrivalTimestamp ? (this.departureTimestamp - this.arrivalTimestamp) / 1000 / 24 / 60 / 60 : 0;
 
-        this.periodContainer.innerText = `${this.rentPeriod} ${pluralize({'one': 'сутки', 'few': 'суток', 'many': 'суток'}, this.rentPeriod)}`;
+        this.periodContainer.innerText = `${this.rentPeriod} ${pluralize({'one': 'день', 'few': 'дня', 'many': 'дней'}, this.rentPeriod)}`;
     }
 
     setSummaryInnerText() {
