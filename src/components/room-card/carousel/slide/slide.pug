@@ -1,0 +1,14 @@
+mixin slide(slide)
+    -
+        const {
+            src,
+            alt,
+            width,
+            height
+        } = slide;
+
+    img.carousel__image(
+        src = src
+        alt = alt ? alt : false 
+        width = width ? width : false
+        height = height ? height : false)
