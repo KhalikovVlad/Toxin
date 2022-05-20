@@ -1,0 +1,127 @@
+@import '../../components/room-card/carousel/slide/slide.scss';
+// carousel
+
+.carousel {
+    position: relative;
+    width: 270px;
+    height: 151px;
+    display: grid;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+
+    // carousel slides
+
+    &__slides {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        list-style: none;
+    }
+
+    &__slide {
+        display: none;
+
+        &.carousel__slide_active {
+            display: block;
+        }
+    }
+
+    // carousel controls
+
+    & .carousel__controls {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        &:hover,
+        &:focus-within {
+            & .carousel__control {
+                opacity: 1;
+                transition: opacity .3s;
+            }
+        }
+        &:hover .carousel__icon {
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.8s ease 0s;
+        }
+    }
+
+    // carousel control button
+
+    &__control {
+        width: 42px;
+        z-index: 1;
+        color: white;
+        cursor: pointer;
+        opacity: 0.2;
+        transition: opacity .3s;
+
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: -1px;
+        }
+    }
+
+    &__control_prev{
+        background: linear-gradient(-90deg, transparent 0%, rgba(0, 0, 0, 50%));
+        
+        & .carousel__icon {
+            transform: rotate(90deg);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    &__control_next {
+        background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 50%));
+
+        & .carousel__icon {
+            transform: rotate(-90deg);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    // carousel icon
+
+    &__icon {
+        display: block;
+        font: $icon-font;
+        font-size: 24px;
+        pointer-events: none;
+    }
+
+    &__dots {
+        
+        position: absolute;
+        left: 230px;
+        top: 112px;
+        transform: rotate(270deg);
+        width: 8px;
+        height: 42px;
+        z-index: 5;
+
+        &-item {
+            display: inline-block;
+            width: 7.5px;
+            height: 7.5px;
+            border: 1px solid white;
+            border-radius: 50%;
+            margin-top: 3.75px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &_active {
+                background-color: white;
+            }
+        }
+    }
+}

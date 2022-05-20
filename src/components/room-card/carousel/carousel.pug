@@ -1,0 +1,23 @@
+include ../../components/room-card/carousel/slide/slide
+
+mixin carousel(carousel)
+    -
+        const {
+            imageList
+        } = carousel;
+
+    .carousel.js-carousel
+        ul.carousel__slides   
+            each item in imageList
+                li.carousel__slide.carousel__slide_active
+                    +slide(item) 
+        .carousel__controls
+            button.carousel__control.carousel__control_prev.js-carousel__control_prev(title = 'Предыдущий слайд', aria-label = 'Предыдущий слайд')
+                span.carousel__icon(aria-hidden = 'true')._icon-expand_more
+            button.carousel__control.carousel__control_next.js-carousel__control_next(title = 'Следующий слайд', aria-label = 'Следующий слайд')
+                span.carousel__icon(aria-hidden = 'true')._icon-expand_more
+        .carousel__dots
+            span.carousel__dots-item.carousel__dots-item_active
+            span.carousel__dots-item
+            span.carousel__dots-item
+            span.carousel__dots-item
