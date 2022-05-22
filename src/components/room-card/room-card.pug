@@ -1,0 +1,41 @@
+include ../rate-bar/rate-bar
+include ./carousel/carousel
+
+mixin room-card(roomCard)
+    -
+        const pluralize = require('../../globals/helpers/pluralize.js');
+        const currencyFormat = require('../../globals/helpers/currencyFormat.js');
+        const {  
+            number,
+            isLux,
+            currency,
+            rent,
+            rating,
+            reviewCount,
+            href,
+            imageList
+        } = roomCard;
+
+    section.room-card
+        +carousel({imageList}) 
+        h3.room-card__heading
+            span.room-card__number
+                small № 
+                | #{number}
+                if isLux
+                    strong(class = 'room-card__сategory') #{'Люкс'}&nbsp;
+            span.room-card__rent
+                b.room-card__rent-price #{currencyFormat(currency, rent)} 
+                small.room-card__rent-term &nbsp;#{'в сутки'}
+        hr.room-card__separator
+        .room-card__rating
+            +rate-bar({
+                name: number,
+                count: 5,
+                rating: rating,
+                disabled: true
+            })
+            p.room-card__review-count
+                b #{reviewCount}&nbsp;
+                | #{pluralize({'one': 'Отзыв', 'few': 'Отзыва', 'many': 'Отзывов'}, reviewCount)}       
+        a.room-card__link(href = href, title = 'Узнать больше…')
