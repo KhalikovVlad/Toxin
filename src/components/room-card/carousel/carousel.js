@@ -13,7 +13,7 @@ document.querySelectorAll('.js-carousel').forEach(function (carouselWrapper) {
         slides[n].classList.add('carousel__slide_active')
     }
 
-    const activeDots = (n) => {
+    const activeDot = (n) => {
         for (let i = 0; i < dots.length; i++) {
             dots[i].classList.remove('carousel__dots-item_active');
         }
@@ -22,7 +22,7 @@ document.querySelectorAll('.js-carousel').forEach(function (carouselWrapper) {
 
     const currentSlide = index => {
         activeSlide(index);
-        activeDots(index);
+        activeDot(index);
     }
 
     const nextSlide = () => {
