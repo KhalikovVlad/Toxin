@@ -18,6 +18,5 @@ mixin carousel(carousel)
                 span.carousel__icon(aria-hidden = 'true')._icon-expand_more
         .carousel__dots
             span.carousel__dots-item.carousel__dots-item_active
-            span.carousel__dots-item
-            span.carousel__dots-item
-            span.carousel__dots-item
+            -for (let x = 0; x < 3; x++)
+                span.carousel__dots-item
