@@ -1,0 +1,10 @@
+mixin slider(slider)
+    -
+        const {
+            img
+        } = slider;
+
+    .slider
+        .slider__container.js-slider__container
+            each item in img
+                img.slider__image(src = item.src, alt = item.alt)
