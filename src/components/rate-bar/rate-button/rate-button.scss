@@ -5,16 +5,17 @@
     height: 24px;   
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
     -webkit-appearance: none;
     -moz-appearance: none;
+    margin-top: -10px;
     appearance: none;
     cursor: pointer;
 
     &:before {
         content: '\2605';
         font: $icon-font;
-        font-size: 24px;
+        font-size: 28px;
         background: $purple-gradient;  
         background-clip: text; 
         -webkit-background-clip: text;
