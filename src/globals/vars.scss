@@ -8,6 +8,7 @@ $dark-shade-15per: rgba(31, 32, 65, 15%);
 $dark-shade-5per: rgba(31, 32, 65, 5%);
 
 $purple: #BC9CFF;
+$purple-100per: rgba(188, 156, 255,  100%);
 $purple-50per: rgba(188, 156, 255,  50%);
 $purple-25per: rgba(188, 156, 255,  25%);
 $purple-gradient: linear-gradient(#BC9CFF, #8BA4F9);
@@ -52,9 +53,6 @@ $padding-6_25per: 6.25%;
 
 // breakpoints
 
-$max-width: 1440px;
-$max-width-container: 1160px;
-$md1: $max-width-container + 12;
-$md2: 991.98px;
-$md3: 767.98px;
-$md4: 479.98px;
+$md-880px: 880px;
+$md-958px: 958px;
+$md-1167px: 1167px;
