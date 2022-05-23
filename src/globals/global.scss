@@ -5,9 +5,22 @@ html, body {
 
 *, a, h1, h2, h3, button, input {
     text-decoration: none;
+    color: $dark-shade-75per;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     border: none;
     background: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+
+li {
+    list-style: none;
 }
