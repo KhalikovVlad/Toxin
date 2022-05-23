@@ -1,0 +1,18 @@
+include ../../link-list/link-list
+
+mixin menu(menu)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        const {
+            label,
+            title,
+            linkList
+        } = menu;
+
+    li.menu.js-menu
+        button.menu__button.js-menu__button(title = title, aria-expanded = 'false', aria-controls = `link-list-${id}`)
+            span.menu__label #{label}
+            span.menu__icon(aria-hidden = 'true')._icon-expand_more
+        .menu__containter
+            +link-list(linkList, `link-list-${id}`)
