@@ -1,0 +1,29 @@
+mixin social-list(socialList)    
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        const {
+            socials,
+            src,
+            alt,
+            width,
+            height,
+            href,
+            title,
+            ariaLabel
+        } = socialList;
+
+    ul.social-list
+        each item in socials
+            li.social-list__item
+                a.social-list__link(
+                    href = item.href, 
+                    title = item.title, 
+                    aria-label = item.ariaLabel
+                )
+                    img.social-list__svg(
+                        src = item.src, 
+                        alt = item.alt, 
+                        width = item.width ? item.width : false, 
+                        height = item.height ? item.height : false
+                    )

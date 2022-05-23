@@ -1,0 +1,31 @@
+// social list
+
+.social-list {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+    list-style: none;
+
+    // social list link 
+
+    &__link {
+        display: flex;
+        cursor: pointer;
+
+        &:active {  
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 2px;
+        }
+
+        &:hover { 
+            & .social-list__svg {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
