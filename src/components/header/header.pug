@@ -1,0 +1,52 @@
+include ./menu/menu
+include ../logo/logo
+include ../link/link
+
+mixin header(header, auth, user)
+    -
+        const uniqid = require('uniqid');
+        const id = uniqid();
+        const {
+            navList
+        } = header;
+
+    header.header.js-header
+        .header__content
+            a.header__logo-link(href = './landing-page.html', title = 'Главная страница', aria-label = 'Главная страница')
+                +logo()
+            button.header__button.js-header__button(aria-expanded = 'false', aria-controls = `navigation-${id}`, aria-label = 'Навигационное меню')
+                span.header__button-icon(aria-hidden = 'true')
+            nav.header__nav.js-header__nav(id = `navigation-${id}`)
+                ul.header__nav-list
+                    each item in navList
+                        if item.isMenu
+                            +menu(item.menu)
+                        else 
+                            li.header__nav-item
+                                +link(item)                   
+                    if auth
+                        li.header__nav-separator(role = 'separator')
+                        li.header__nav-item
+                            +link({
+                                label: `${user.name} ${user.surname}`,
+                                href: user.href,
+                                title: 'Личный кабинет'
+                            })                      
+                    else 
+                        li.header__nav-separator.header__nav-separator_mobile-only(role = 'separator')
+                        li.header__nav-item
+                            +link({
+                                label: 'Войти',
+                                href: './login-page.html',
+                                title: 'Вход',
+                                button: true,
+                                border: true
+                            })
+                        li.header__nav-item
+                            +link({
+                                label: 'Зарегистрироваться',
+                                href: './registration-page.html',
+                                title: 'Регистрация',
+                                button: true,
+                                fill: true
+                            })
