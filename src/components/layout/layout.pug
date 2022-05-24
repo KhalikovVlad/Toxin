@@ -1,0 +1,14 @@
+include ../header/header
+include ../footer/footer
+
+mixin layout(auth, user)
+    -
+        const {
+            header,
+            footer
+        } = layout;
+
+    +header(header, auth, user)
+    if block
+        block  
+    +footer(footer)
