@@ -95,6 +95,7 @@
         text-transform: uppercase;
         pointer-events: none;
         white-space: nowrap;
+        color: white;
     }
 
     // button icon
@@ -106,5 +107,6 @@
         font: $icon-font;
         font-size: 24px;
         pointer-events: none;
+        color: white;
     }
 }

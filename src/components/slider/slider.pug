@@ -7,4 +7,4 @@ mixin slider(slider)
     .slider
         .slider__container.js-slider__container
             each item in img
-                img.slider__image(src = item.src, alt = item.alt)
+                img.slider__image(src = item.src, alt = item.alt ? item.alt : false)
