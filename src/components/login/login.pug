@@ -1,0 +1,14 @@
+include ../form-login/form-login
+include ../slider/slider
+
+mixin login(login) 
+    -
+        const {
+            img
+        } = login;
+
+    main.login-page
+        .login-page__content
+            +form-login()
+        .login-page__background
+            +slider({img})

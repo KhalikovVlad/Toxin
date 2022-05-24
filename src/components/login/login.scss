@@ -1,0 +1,48 @@
+@import '../../components/form-login/form-login.scss';
+@import '../../components/slider/slider.scss';
+
+// login page
+
+.login-page {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    background-color: $dark-shade-5per;
+
+    // login page content
+
+    &__content {
+        position: relative;
+        width: min(100vw, 1159px);
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+
+        @media (width < $md-1025px) {
+            padding: 50px 0px;
+        }
+
+        @media (width > $md-1025px) {
+            padding: 172px 0px;
+        }
+    }
+
+    // login page background image
+
+    &__background {
+        position: absolute;
+        width: 100vw;
+        z-index: -1;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__picture {
+        display: grid;
+    }
+
+    &__image {
+        position: relative;
+    }
+}
