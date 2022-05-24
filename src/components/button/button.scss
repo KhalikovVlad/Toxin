@@ -44,6 +44,11 @@
         padding: 0px 20px;
         background: $purple-gradient;
         color: white;
+
+        & .button__label,
+        & .button__icon {
+            color: white;
+        }
     
         &:active:not(:disabled) {
             opacity: 0.5;
@@ -58,8 +63,13 @@
             box-shadow: $shadow-hover;
         }    
     }
+
     &_link {
         transition: opacity .2s;
+
+        & .button__label {
+            color: $purple;
+        }
     
         &:active:not(:disabled) {
             opacity: 0.5;
@@ -95,7 +105,6 @@
         text-transform: uppercase;
         pointer-events: none;
         white-space: nowrap;
-        color: white;
     }
 
     // button icon
@@ -107,6 +116,5 @@
         font: $icon-font;
         font-size: 24px;
         pointer-events: none;
-        color: white;
     }
 }
