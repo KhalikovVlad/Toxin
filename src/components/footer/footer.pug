@@ -1,0 +1,42 @@
+include ./social-list/social-list
+include ../logo/logo
+include ../link-list/link-list
+include ../subscription-field/subscription-field
+
+mixin footer(footer)
+    -
+        const {
+            promo,
+            navLinkList,
+            aboutLinkList,
+            supportLinkList,
+            socials,
+        } = footer;
+
+    footer.footer
+        h2.footer__heading.visually-hidden #{'Подвал сайта'}
+        .footer__content
+            a.footer__logo-link(href = './landing-page.html', title = 'Главная страница', aria-label = 'Главная страница')
+                +logo()
+            section.footer__promo
+                p.footer__paragraph !{promo}
+            nav.footer__nav
+                section.footer__navigation
+                    h3.footer__label #{'Навигация'}
+                    +link-list(navLinkList)
+                section.footer__about
+                    h3.footer__label #{'О нас'}
+                    +link-list(aboutLinkList)
+                section.footer__support
+                    h3.footer__label #{'Служба поддержки'}
+                    +link-list(supportLinkList)
+            section.footer__subscription
+                h3.footer__label #{'Подписка'}
+                p.footer__paragraph #{'Получайте специальные предложения и новости сервиса'}
+                +subscription-field(false)
+        hr.footer__separator           
+        .footer__basement(role = 'contentinfo')
+            p.footer__copyright #{'Copyright © 2018 Toxin отель. Все права защищены.'}          
+            section.footer__social
+                h3.footer__label.visually-hidden #{'Мы в социальных сетях'}
+                +social-list({socials})

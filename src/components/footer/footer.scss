@@ -1,0 +1,218 @@
+@import '../../components/footer/social-list/social-list.scss';
+@import '../../components/logo/logo.scss';
+@import '../../components/link-list/link-list.scss';
+@import '../../components/subscription-field/subscription-field.scss';
+
+// footer
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-auto-rows: max-content;
+    background-color: white;
+    border-top: 1px solid $dark-shade-25per;
+    box-shadow: $shadow3;
+
+    @media (width < $md-880px) {
+        grid-template-areas: 
+            '. content .'
+            '. basement .';
+        row-gap: 20px;
+    }
+
+    @media (width > $md-880px) {
+        grid-template-areas: 
+            '. content .'
+            'separator separator separator'
+            '. basement .';
+    }
+
+    // footer label 
+
+    &__label {
+        margin-bottom: 20px;
+        font: $h3-font;
+        color: $dark-shade-100per;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    // footer content
+
+    &__content {
+        grid-area: content;
+        width: min(90vw, 1159px);
+        padding: 100px 0px;
+        display: grid;
+
+        @media (width < $md-880px) {
+            justify-content: center;
+            padding-bottom: 0;
+        }
+
+        @media (width > $md-880px) and (width < $md-1167px) {
+            grid-template-areas: 
+                'logo logo'
+                'nav subscribtion';       
+            grid-auto-columns: 462px max-content;
+            justify-content: space-between;
+            row-gap: 50px;
+        }
+
+        @media (width > $md-1167px) {
+            grid-template-areas: 
+                'logo nav subscription'
+                'promo nav subscription'; 
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: max-content auto;
+            gap: 18px 20px;
+            background-color: white;
+        }
+    }
+
+    // footer logo link 
+
+    &__logo-link {
+        grid-area: logo;
+        width: max-content;
+        display: inline-flex;
+
+        &:focus {
+            outline: $custom-outline;
+            outline-offset: 2px;
+        }
+
+        @media (width < $md-1167px) {
+            justify-self: start;
+        }
+    }
+
+    // footer paragraph 
+
+    &__paragraph {
+        width: 260px;
+        font: $body-font;
+        white-space: pre-wrap;
+        color: $dark-shade-50per;
+    }
+
+    // footer promo section
+
+    &__promo {
+        @media (width < $md-1167px) {
+            display: none;
+        }
+
+        @media (width > $md-1167px) {
+            grid-area: promo;
+        }
+    }
+
+    // footer nav 
+
+    &__nav {
+        @media (width < $md-880px) {
+            display: none;
+        }
+
+        @media (width > $md-880px) { 
+            grid-area: nav;
+            display: grid;
+            grid-auto-flow: column;
+        }
+
+        @media (width > $md-880px) and (width < $md-1167px) {
+            grid-auto-columns: max-content;
+            justify-content: space-between;
+        }
+
+        @media (width > $md-1167px) { 
+            width: min(100%, 563px);
+            margin-top: 5px;
+            grid-auto-columns: 159px;
+            justify-content: space-between;
+            justify-self: center;
+        }
+    }
+
+    // footer subscription section
+
+    &__subscription {
+
+        & .footer__paragraph {
+            @media (width > $md-880px) {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (width < $md-880px) {
+            display: none;
+        }
+
+        @media (width > $md-1167px) { 
+            grid-area: subscription;
+            margin-top: 5px;
+        }
+    }
+
+    // footer basement 
+
+    &__basement {
+        grid-area: basement;
+        width: min(90vw, 1159px);
+
+        @media (width < $md-880px) {
+            display: grid;
+            row-gap: 20px;
+            padding-bottom: 100px;
+            grid-auto-columns: max-content;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        @media (width > $md-880px) {
+            display: flex;
+            padding: 23px 0px;
+        }
+
+        @media (width > $md-880px) and (width < $md-1167px) {
+            justify-content: space-between;
+        }
+
+        @media (width > $md-1167px) {
+            justify-content: space-between;
+        }
+    }
+
+    // footer copyright
+
+    &__copyright {
+        max-width: 70vw;
+        font: $body-font;
+        color: $dark-shade-50per;
+        text-align: center;
+    }
+
+    // footer separator 
+
+    &__separator {
+        @media (width < $md-880px) {
+            display: none;
+        }
+
+        @media (width > $md-880px) {
+            grid-area: separator;
+            width: 100%;
+            height: 1px;
+            background-color: $dark-shade-25per;
+        }
+    }
+}
+
+
+
+
+
+
+
+
