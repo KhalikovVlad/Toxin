@@ -1,0 +1,14 @@
+include ../form-registration/form-registration
+include ../slider/slider
+
+mixin registration(registration) 
+    -
+        const {
+            img
+        } = registration;
+
+    main.registration-page
+            .registration-page__content
+                +form-registration()
+            .registration-page__background
+                +slider({img})

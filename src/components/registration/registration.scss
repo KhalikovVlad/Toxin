@@ -1,0 +1,37 @@
+@import '../../components/form-registration/form-registration.scss';
+@import '../../components/slider/slider.scss';
+
+// registration page
+
+.registration-page {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    background-color: $dark-shade-5per;
+
+    // registration page content
+
+    &__content {
+        position: relative;
+        padding: 19px 0px;
+        width: min(100vw, 1159px);
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+    }
+
+    // registration page background image 
+
+    &__background {
+        position: absolute;
+        width: 100vw;
+        z-index: -1;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__image {
+        position: relative;
+    }
+}
