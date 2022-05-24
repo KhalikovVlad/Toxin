@@ -1,0 +1,18 @@
+include ../form-search/form-search
+include ../slider/slider
+
+mixin landing(landing)
+    -
+
+        const {
+            tagline,
+            img
+        } = landing;
+    
+    main.landing
+        section.landing__content
+            +form-search()
+            p.landing__tagline #{tagline}
+        .landing__background
+            .landing__carousel 
+                +slider({img})

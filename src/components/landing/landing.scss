@@ -1,0 +1,82 @@
+@import '../../components/form-search/form-search.scss';
+@import '../../components/slider/slider.scss';
+
+// landing
+
+.landing {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    background-color: $dark-shade-5per;
+
+    @media (width < $md-880px) {
+        padding: 70px 0px;
+    }
+
+    @media (width > $md-880px) {
+        padding: 70px;
+        height: 830px;
+    }
+
+    // landing content
+
+    .landing__content {
+        width: min(100vw, 1159px);
+        align-items: center;
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @media (width < $md-880px) {
+            align-items: center;
+        }
+    }
+
+    // landing tagline 
+
+    .landing__tagline {
+        align-self: flex-end;
+        margin-bottom: 18px;
+        max-width: 297px;
+        font: $body-font;
+        color: $dark-shade-75per;
+        text-align: right;
+
+        @media (width < $md-880px) {
+            display: none;
+        }
+    }
+
+    // landing background 
+
+    .landing__background {
+        position: absolute;
+        min-width: 100%;
+        bottom: 0;
+        z-index: -1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden;
+
+        @media (width < $md-433px) {
+            height: 100%;
+        }
+    }
+
+    // landing carousel
+
+    .landing__carousel {
+        position: relative;
+        max-width: 1440px;
+
+        @media (width < $md-433px) {
+            display: none;
+        }
+
+        @media (width > $md-880px) {
+            height: 900px;
+        }
+    }
+}
